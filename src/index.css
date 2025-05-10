@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .jc-container {
+    @apply container px-5 sm:px-6 lg:px-8 mx-auto;
+  }
+  .jc-grid {
+    @apply grid grid-cols-12 gap-[12px];
+  }
+  .jc-hover {
+    @apply opacity-80 hover:opacity-100 ease-in-out cursor-pointer;
+  }
+  .jc-btn {
+    @apply px-[38px] py-[12px] rounded-[40px] font-bold jc-text-black hover:text-white ease-in-out;
+  }
+  .jc-text-linear {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#8176af] to-[#c0b7e8];
+  }
+}
+@layer utilities {
+  .jc-text-black {
+    color: #343045;
+  }
+  .jc-bg-linear {
+    background: linear-gradient(to right, #8176af 0%, #c0b7e8 100%);
+  }
+  .jc-btn-border {
+    border-radius: 40px;
+  }
+  .jc-text-2xl {
+    @apply text-[32px] md:text-[48px] lg:text-[60px];
+  }
+  .jc-text-xl {
+    @apply text-[20px] md:text-[24px] lg:text-[32px];
+  }
+  .jc-text-lg {
+    @apply text-[16px] md:text-[16px] lg:text-[22px];
+  }
+  .jc-text-base {
+    @apply text-[14px] md:text-[16px] lg:text-[16px];
+  }
+  .jc-text-sm {
+    @apply text-[12px] md:text-[14px] lg:text-[14px];
+  }
+  .jc-section__heading {
+    @apply text-[20px] md:text-[24px] lg:text-[32px] font-semibold leading-none text-white;
+  }
+  .jc-section__sub-heading {
+    @apply text-[20px] md:text-[24px] lg:text-[32px] font-light leading-none text-white;
+  }
+  .jc-section__caption {
+    @apply text-[14px] md:text-[16px] lg:text-[16px] font-normal text-white;
+  }
+}
