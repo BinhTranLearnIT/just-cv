@@ -45,10 +45,10 @@
     @apply text-[12px] md:text-[14px] lg:text-[14px];
   }
   .jc-section__heading {
-    @apply text-[20px] md:text-[24px] lg:text-[32px] font-semibold leading-none text-white;
+    @apply text-[26px] md:text-[24px] lg:text-[32px] font-semibold leading-none text-white;
   }
   .jc-section__sub-heading {
-    @apply text-[20px] md:text-[24px] lg:text-[32px] font-light leading-none text-white;
+    @apply text-[26px] md:text-[24px] lg:text-[32px] font-light leading-none text-white;
   }
   .jc-section__caption {
     @apply text-[14px] md:text-[16px] lg:text-[16px] font-normal text-white;

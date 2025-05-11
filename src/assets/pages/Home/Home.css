@@ -28,12 +28,13 @@
 }
 .jc-section__sub-heading {
   position: relative;
-  display: inline-block;
+  width: fit-content;
 }
 .jc-arrow-long::after {
   content: "";
   width: 100px;
   height: 30px;
+  display: none;
   background-position: right;
   background-image: url("./imgs/arrow-long.png");
   background-repeat: no-repeat;
@@ -41,6 +42,11 @@
   left: calc(100% + 30px);
   top: 50%;
   transform: translateY(-50%);
+}
+@media (min-width: 640px) {
+  .jc-arrow-long::after {
+    display: block;
+  }
 }
 @media (min-width: 768px) {
   .jc-arrow-long::after {
@@ -56,12 +62,13 @@
 .about__bg {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  height: 80vh;
+  right: 0;
+  width: 100vw;
+  height: 100%;
   z-index: 0;
   background-image: url("./imgs/about-bg.png");
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
 }
 .service__card {

@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "../../components/Header/Header";
 import "./Home.css";
+
+import JcSwiper from "../../components/Swiper/JcSwiper.jsx";
+
 export default function Home() {
   return (
     <div className="">
@@ -9,20 +12,29 @@ export default function Home() {
 
         <section className="hero  relative ">
           <div className="jc-grid  jc-container items-stretch place-content-center h-[calc(100vh-80px)]">
-            <div className="col-span-7 z-10 flex flex-col justify-center items-start ">
-              <h1 className="hero__title xl:text-[48px] lg:text-[40px] text-[32px] text-white font-bold">
-                <span className="jc-text-linear"> Your </span>Dream Job
+            <div className="text-center sm:text-right col-span-12 sm:col-span-7 order-2 sm:order-1 z-10 flex flex-col justify-center items-start ">
+              <h1 className="hero__title xl:text-[44px] lg:text-[36px] sm:text-[32px] w-full text-center sm:text-left text-[24px] text-white font-bold">
+                <span className="jc-text-linear text-[32px] sm:text-[36px] xl:text-[48px] lg:text-[40px] ">
+                  {" "}
+                  Your{" "}
+                </span>
+                Dream Job Start
                 <br />
-                Start{" "}
-                <span className="jc-text-linear">With The Right Resume</span>
+                With <br className="inline sm:hidden" />
+                <span className="jc-text-linear text-[32px] sm:text-[36px] xl:text-[48px] lg:text-[40px] ">
+                  The Right Resume
+                </span>
               </h1>
 
-              <button className="hero__cta-btn relative mt-[30px] jc-btn jc-bg-linear font-bold hover:text-white jc-text-black text-base">
+              <button className="hidden sm:inline-block hero__cta-btn relative mt-[30px] jc-btn jc-bg-linear font-bold hover:text-white jc-text-black text-base">
                 Get Started for Free
               </button>
+              <button className="mx-auto inline-block sm:hidden relative mt-[30px] jc-btn jc-bg-linear font-bold hover:text-white jc-text-black text-base">
+                BUILD YOUR RESUME
+              </button>
             </div>
-            <div className="col-span-5 col-end-13 z-10  ">
-              <div className="hero__img float-right ">
+            <div className="mt-[10vh]  sm:mt-0 mb-[25px] sm:mb-0 col-span-12 sm:col-span-5  z-10  order-1 sm:order-2">
+              <div className="hero__img sm:float-right mx-auto sm:mx-0 items-center max-w-[300px] sm:max-w-[550px] ">
                 <img src="imgs/hero-img.png" className=" " alt="" />
               </div>
             </div>
@@ -30,16 +42,18 @@ export default function Home() {
           <div className="hero__bg"></div>
         </section>
         <section className="about   relative">
-          <div className="jc-container my-[111px] z-10 relative">
-            <div className="jc-grid pb-[100px]">
-              <div className="col-span-5">
-                <h1 className="jc-section__heading mb-[10px]">INTRODUCTION</h1>
-                <h2 className="jc-section__sub-heading jc-arrow-long">
+          <div className="jc-container my-[60px] sm:my-[111px] z-10 relative">
+            <div className="jc-grid pb-[30px] sm:pb-[100px]">
+              <div className="col-span-12 sm:col-span-5  place-items-center sm:place-items-start ">
+                <h1 className="jc-section__heading mb-[10px] w-fit">
+                  INTRODUCTION
+                </h1>
+                <h2 className="jc-section__sub-heading jc-arrow-long w-fit">
                   TO JustRS
                 </h2>
               </div>
 
-              <div className="col-span-7">
+              <div className="hidden sm:block col-span-7">
                 <p className="jc-section__caption float-end pl-5">
                   The smarter way to create your resume. In a world where first
                   impressions matter, your resume is your personal brand. JustRS
@@ -49,39 +63,56 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="jc-grid items-stretch place-content-center">
-              <div className="col-span-5">
-                <img src="./imgs/about-img.png" className="w-full" alt="" />
+            <div className="jc-grid  items-stretch overflow-x-hidden ">
+              <div className="col-span-12  relative sm:col-span-5 flex flex-col justify-center">
+                <div className="about__bg"></div>
+                <img
+                  src="./imgs/about-img.png"
+                  className=" z-10 mx-auto sm:mx-0  relative w-full max-w-[300px] sm:max-w-[550px]
+              ]"
+                  alt=""
+                />
               </div>
-              <div className="col-span-6 col-start-7 flex flex-col justify-center items-start">
-                <h1 className="jc-section__heading mb-[10px]">ABOUT</h1>
-                <h2 className="jc-section__sub-heading  ">JustRS</h2>
-                <p className="jc-section__caption mt-[42px] mb-[24px]">
+              <div className="col-span-12 sm:col-span-6 sm:col-start-7 flex flex-col justify-center items-start">
+                <h1 className="sm:block hidden jc-section__heading mb-[10px]">
+                  ABOUT
+                </h1>
+                <h2 className="jc-section__sub-heading sm:inline-block hidden">
+                  JustRS
+                </h2>
+
+                <p className="jc-section__caption mt-[42px] mb-[30px] sm:mb-[24px]">
+                  <span className="sm:hidden">
+                    The smarter way to create your resume. In a world where
+                    first impressions matter, your resume is your personal
+                    brand. JustRS empowers you with clean, professional designs
+                    and effortless editing tools to help you land your next
+                    opportunity with confidence.{""}
+                  </span>
                   JustRS is a modern Resume builder that helps you craft
                   professional, eye-catching resumes in minutes. Whether you're
                   a student, a seasoned professional, or making a career switch,
                   JustRS provides beautiful templates and smart tools tailored
                   to your needs.
                 </p>
-                <button className="jc-btn jc-bg-linear">
+                <button className="jc-btn jc-bg-linear mx-auto sm:mx-0">
                   LET'S GET IN TOUCH
                 </button>
               </div>
             </div>
           </div>
-          <div className="about__bg"></div>
         </section>
         <section className="service   relative">
-          <div className="jc-container my-[111px] z-10 relative">
-            <div className="jc-grid pb-[100px]">
-              <div className="col-span-5">
+          <div className="jc-container my-[60px] sm:my-[111px z-10 relative">
+            <div className="jc-grid mb-[26px] sm:mb-[100px]">
+              <div className="col-span-12 sm:col-span-5  place-items-center sm:place-items-start ">
                 <h1 className="jc-section__heading mb-[10px]">WHY CHOOSE</h1>
                 <h2 className="jc-section__sub-heading jc-arrow-long">
                   JustRS
                 </h2>
               </div>
 
-              <div className="col-span-7">
+              <div className="col-span-7 hidden sm:block">
                 <p className="jc-section__caption float-end pl-5">
                   We believe your resume should reflect more than just your
                   experience — it should showcase your personality and
@@ -91,7 +122,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="jc-grid gap-[24px] lg:gap-[12px]">
+            <div className="hidden sm:jc-grid gap-[24px] lg:gap-[12px] ">
               <div className="service__card self-stretch col-span-6 lg:col-span-3 pt-[23px] pb-[100px] px-[35px]  w-full flex flex-col items-center  bg-white rounded-[40px]">
                 <div className=" service__card--img bg-[#0e0e0e]/30 p-[14px] rounded-full w-40 h-40 lg:w-42 lg:h-42  overflow-hidden">
                   <img
@@ -180,6 +211,101 @@ export default function Home() {
                 </button>
               </div>
             </div>
+            <div className="sm:hidden">
+              <JcSwiper>
+                <div className="service__card  pt-[23px] pb-[100px] px-[35px]  w-full flex flex-col items-center rounded-[40px]">
+                  <div className=" service__card--img bg-[#0e0e0e]/30 p-[14px] rounded-full w-40 h-40 lg:w-42 lg:h-42  overflow-hidden">
+                    <img
+                      src="./imgs/service-1.jpg"
+                      alt="service-1"
+                      className="w-full  rounded-full"
+                    />
+                  </div>
+                  <h1 className="uppercase font-bold text-[24px] lg:text-[24px] text-white mt-[21px] mb-[39px]">
+                    TEMPLATES
+                  </h1>
+                  <p className="text-[12px]  text-white text-left mb-[35px]">
+                    A curated collection of modern and professional RS templates
+                    designed to suit every career stage and industry. Each
+                    template is crafted to be visually appealing and
+                    recruiter-friendly — helping your application stand out
+                    instantly.
+                  </p>
+                  <button className=" jc-btn jc-bg-linear text-[14px]">
+                    TRY IT NOW
+                  </button>
+                </div>
+
+                <div className="service__card  pt-[23px] pb-[100px] px-[35px]  w-full flex flex-col items-center rounded-[40px]">
+                  <div className=" service__card--img bg-[#0e0e0e]/30 p-[14px] rounded-full w-40 h-40 lg:w-42 lg:h-42  overflow-hidden">
+                    <img
+                      src="./imgs/service-1.jpg"
+                      alt="service-1"
+                      className="w-full  rounded-full"
+                    />
+                  </div>
+                  <h1 className="uppercase font-bold text-[24px] lg:text-[24px] text-white mt-[21px] mb-[39px]">
+                    TEMPLATES
+                  </h1>
+                  <p className="text-[12px]  text-white text-left mb-[35px]">
+                    A curated collection of modern and professional RS templates
+                    designed to suit every career stage and industry. Each
+                    template is crafted to be visually appealing and
+                    recruiter-friendly — helping your application stand out
+                    instantly.
+                  </p>
+                  <button className=" jc-btn jc-bg-linear text-[14px]">
+                    TRY IT NOW
+                  </button>
+                </div>
+
+                <div className="service__card  pt-[23px] pb-[100px] px-[35px]  w-full flex flex-col items-center rounded-[40px]">
+                  <div className=" service__card--img bg-[#0e0e0e]/30 p-[14px] rounded-full w-40 h-40 lg:w-42 lg:h-42  overflow-hidden">
+                    <img
+                      src="./imgs/service-1.jpg"
+                      alt="service-1"
+                      className="w-full  rounded-full"
+                    />
+                  </div>
+                  <h1 className="uppercase font-bold text-[24px] lg:text-[24px] text-white mt-[21px] mb-[39px]">
+                    TEMPLATES
+                  </h1>
+                  <p className="text-[12px]  text-white text-left mb-[35px]">
+                    A curated collection of modern and professional RS templates
+                    designed to suit every career stage and industry. Each
+                    template is crafted to be visually appealing and
+                    recruiter-friendly — helping your application stand out
+                    instantly.
+                  </p>
+                  <button className=" jc-btn jc-bg-linear text-[14px]">
+                    TRY IT NOW
+                  </button>
+                </div>
+
+                <div className="service__card  pt-[23px] pb-[100px] px-[35px]  w-full flex flex-col items-center rounded-[40px]">
+                  <div className=" service__card--img bg-[#0e0e0e]/30 p-[14px] rounded-full w-40 h-40 lg:w-42 lg:h-42  overflow-hidden">
+                    <img
+                      src="./imgs/service-1.jpg"
+                      alt="service-1"
+                      className="w-full  rounded-full"
+                    />
+                  </div>
+                  <h1 className="uppercase font-bold text-[24px] lg:text-[24px] text-white mt-[21px] mb-[39px]">
+                    TEMPLATES
+                  </h1>
+                  <p className="text-[12px]  text-white text-left mb-[35px]">
+                    A curated collection of modern and professional RS templates
+                    designed to suit every career stage and industry. Each
+                    template is crafted to be visually appealing and
+                    recruiter-friendly — helping your application stand out
+                    instantly.
+                  </p>
+                  <button className=" jc-btn jc-bg-linear text-[14px]">
+                    TRY IT NOW
+                  </button>
+                </div>
+              </JcSwiper>
+            </div>
           </div>
         </section>
         <section className="tech   ">
@@ -190,12 +316,12 @@ export default function Home() {
               </h1>
               <h2 className="jc-section__sub-heading ">Used By JustRS</h2>
             </div>
-            <div className="tech__list col-span-12 flex flex-nowrap justify-center items-center  space-x-5">
+            <div className="tech__list col-span-12 hidden sm:flex flex-nowrap justify-center items-center  space-x-5">
               <figure className="tech__icon flex flex-col items-center   ">
                 <img
                   src="./imgs/react.svg"
                   alt="react-logo"
-                  className="w-[80px] mb-3 opacity-70 scale-[0.9]"
+                  className="md:w-[70px] w-[50px] lg:w-[80px] mb-3 opacity-70 scale-[0.9]"
                 />
                 <figcaption className="text-[15px] text-white font-normal ">
                   REACT
@@ -263,20 +389,95 @@ export default function Home() {
                 </figcaption>
               </figure>
             </div>
+            <div className="col-span-12 block sm:hidden">
+              <JcSwiper>
+                <figure className="tech__icon flex flex-col items-center   ">
+                  <img
+                    src="./imgs/react.svg"
+                    alt="react-logo"
+                    className="w-[200px] mb-3 opacity-70 scale-[0.9]"
+                  />
+                  <figcaption className="text-[20px] text-white font-normal ">
+                    REACT
+                  </figcaption>
+                </figure>
+                <figure className="tech__icon flex flex-col items-center   ">
+                  <img
+                    src="./imgs/html.svg"
+                    alt="react-logo"
+                    className="w-[200px] mb-3 opacity-70"
+                  />
+                  <figcaption className="text-[20px] text-white font-normal">
+                    HTML5
+                  </figcaption>
+                </figure>
+                <figure className="tech__icon flex flex-col items-center   ">
+                  <img
+                    src="./imgs/css.svg"
+                    alt="react-logo"
+                    className="w-[200px] mb-3 opacity-70"
+                  />
+                  <figcaption className="text-[20px] text-white font-normal">
+                    CSS3
+                  </figcaption>
+                </figure>
+                <figure className="tech__icon flex flex-col items-center   ">
+                  <img
+                    src="./imgs/tailwind.svg"
+                    alt="react-logo"
+                    className="w-[200px] mb-3 opacity-70"
+                  />
+                  <figcaption className="text-[20px] text-white font-normal">
+                    TAILWIND
+                  </figcaption>
+                </figure>
+
+                <figure className="tech__icon flex flex-col items-center  ">
+                  <img
+                    src="./imgs/firebase.svg"
+                    alt="react-logo"
+                    className="w-[200px] mb-3 opacity-70"
+                  />
+                  <figcaption className="text-[20px] text-white font-normal">
+                    FIREBASE
+                  </figcaption>
+                </figure>
+                <figure className="tech__icon flex flex-col items-center   ">
+                  <img
+                    src="./imgs/typescript.svg"
+                    alt="react-logo"
+                    className="w-[200px] mb-3 opacity-70"
+                  />
+                  <figcaption className="text-[20px] text-white font-normal">
+                    TYPESCRIPT
+                  </figcaption>
+                </figure>
+                <figure className="tech__icon flex flex-col items-center  ">
+                  <img
+                    src="./imgs/react-print.png"
+                    alt="react-logo"
+                    className="w-[200px] mb-3 opacity-70"
+                  />
+                  <figcaption className="text-[20px] text-white font-normal text-center">
+                    REACT TO PRINT
+                  </figcaption>
+                </figure>
+              </JcSwiper>
+            </div>
           </div>
         </section>
         <section className="process w-full ">
           <div className="jc-container  my-[111px]">
             <div className="jc-grid pb-[100px]">
-              <div className="col-span-5">
+              <div className="col-span-12 sm:col-span-5 place-items-center sm:place-items-start mb-[26px] sm:mb-0">
                 <h1 className="jc-section__heading mb-[10px]">HOW YOU BUILD</h1>
                 <h2 className="jc-section__sub-heading jc-arrow-long">
                   WITH JustRS
                 </h2>
               </div>
 
-              <div className="col-span-7">
-                <p className="jc-section__caption float-end pl-5">
+              <div className="col-span-12 sm:col-span-7">
+                <p className="jc-section__caption float-end sm:pl-5">
                   The smarter way to create your resume. In a world where first
                   impressions matter, your resume is your personal brand. JustRS
                   empowers you with clean, professional designs and effortless
@@ -285,7 +486,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="jc-grid process__bg relative ">
+            <div className="hidden sm:jc-grid process__bg relative ">
               <div className="col-span-3 px-5 z-10 flex flex-col items-center pt-[10px]">
                 <div className="sm:w-[120px] sm:h-[120px] md:w-[140px] md:h-[140px] lg:w-[180px] lg:h-[180px] xl:w-[198px] xl:h-[198px] bg-[#0d0d0d]/30 p-[20px] rounded-full">
                   <div className="w-full rounded-full h-full bg-white flex justify-center items-center">
@@ -350,16 +551,79 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <div className="sm:hidden">
+              <JcSwiper>
+                <div className=" px-5 z-10 flex flex-col items-center pt-[10px]">
+                  <div className="w-[198px] h-[198px] bg-[#0d0d0d]/30 p-[20px] rounded-full">
+                    <div className="w-full rounded-full h-full bg-white flex justify-center items-center">
+                      <h1 className="jc-text-2xl font-extrabold jc-text-black">
+                        01
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="w-full relative mt-[25px] text-center ">
+                    <p className="    text-[24px] text-white font-semibold">
+                      Choose Your Resume Template
+                    </p>
+                  </div>
+                </div>
+
+                <div className=" px-5 z-10 flex flex-col items-center pt-[10px]">
+                  <div className="w-[198px] h-[198px] bg-[#0d0d0d]/30 p-[20px] rounded-full ">
+                    <div className="w-full rounded-full h-full bg-white flex justify-center items-center">
+                      <h1 className="jc-text-2xl font-extrabold jc-text-black">
+                        02
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="w-full relative mt-[25px] text-center ">
+                    <p className="    text-[24px] text-white font-semibold">
+                      Enter Your Personal Information
+                    </p>
+                  </div>
+                </div>
+
+                <div className=" px-5 z-10 flex flex-col items-center pt-[10px]">
+                  <div className="w-[198px] h-[198px] bg-[#0d0d0d]/30 p-[20px] rounded-full ">
+                    <div className="w-full rounded-full h-full bg-white flex justify-center items-center">
+                      <h1 className="jc-text-2xl font-extrabold jc-text-black">
+                        03
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="w-full relative mt-[25px] text-center ">
+                    <p className="    text-[24px] text-white font-semibold">
+                      Customize the Look & Layout
+                    </p>
+                  </div>
+                </div>
+
+                <div className=" px-5 z-10 flex flex-col items-center pt-[10px]">
+                  <div className="w-[198px] h-[198px] bg-[#0d0d0d]/30 p-[20px] rounded-full ">
+                    <div className="w-full rounded-full h-full bg-white flex justify-center items-center">
+                      <h1 className="jc-text-2xl font-extrabold jc-text-black">
+                        04
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="w-full relative mt-[25px] text-center ">
+                    <p className="    text-[24px] text-white font-semibold">
+                      Download & Apply
+                    </p>
+                  </div>
+                </div>
+              </JcSwiper>
+            </div>
           </div>
         </section>
         <footer className="bg-black/30 py-[50px]">
           <div className="jc-container jc-grid">
-            <div className="footer__logo footer__line col-span-2 items-stretch ">
-              <div className=" text-white font-bold text-xl md:text-2xl lg:text-4xl">
+            <div className="footer__logo footer__line col-span-12 sm:col-span-2 items-stretch text-center sm:text-left">
+              <div className=" text-white font-bold text-[32px] sm:text-xl md:text-2xl lg:text-4xl">
                 JustRS
               </div>
             </div>
-            <div className="footer__links footer__line  place-items-center col-span-5 jc-text-base space-y-1  text-white">
+            <div className="hidden sm:block footer__links footer__line  place-items-center col-span-5 jc-text-base space-y-1  text-white">
               <div>
                 <p className="jc-hover w-fit  py-2">RS TEMPLATE</p>
               </div>
@@ -368,7 +632,7 @@ export default function Home() {
               <p className="jc-hover w-fit  py-2">TECHNOLOGY</p>
               <p className="jc-hover w-fit  py-2"> PROCESS</p>
             </div>
-            <div className="footer__social col-span-5 place-items-center">
+            <div className="footer__social col-span-12 sm:col-span-5 place-items-center">
               <h1 className="footer__social-title text-base text-white">
                 SOCIALIZE WITH US
               </h1>

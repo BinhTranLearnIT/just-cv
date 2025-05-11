@@ -19,12 +19,12 @@ export default function Header() {
       }`}
     >
       <div
-        className={`header__mobile h-[50vh] py-[20px] bg-white 
+        className={`header__mobile h-[55vh] py-[20px] bg-white 
           shadow-[0_4px_10px_0_rgba(0,0,0,0.25)]
           rounded-bl-lg rounded-br-lg
        top-[-50px] left-0 absolute  w-full flex flex-col justify-end
        transform transition duration-500 ease-out opacity-0 ${
-         isNavOpen ? "slide-down" : "slide-up"
+         isNavOpen ? "slide-down" : "slide-up pointer-events-none -z-10"
        }
       `}
       >
@@ -37,7 +37,7 @@ export default function Header() {
         <button className="jc-hover py-6 jc-text-black jc-text-sm font-semibold">
           Language
         </button>
-        <button className="mx-auto w-fit text-white jc-bg-linear font-bold jc-btn jc-text-sm">
+        <button className="mx-auto w-fit hover:text-white jc-text-black  jc-bg-linear font-bold jc-btn jc-text-sm">
           Sign in
         </button>
       </div>
