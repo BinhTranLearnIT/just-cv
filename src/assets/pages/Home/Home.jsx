@@ -12,8 +12,8 @@ export default function Home() {
 
         <section className="hero  relative ">
           <div className="jc-grid  jc-container items-stretch place-content-center h-[calc(100vh-80px)]">
-            <div className="text-center sm:text-right col-span-12 sm:col-span-7 order-2 sm:order-1 z-10 flex flex-col justify-center items-start ">
-              <h1 className="hero__title xl:text-[44px] lg:text-[36px] sm:text-[32px] w-full text-center sm:text-left text-[24px] text-white font-bold">
+            <div className="text-center sm:text-right col-span-12 md:col-span-7 order-2 md:order-1 z-10 flex flex-col justify-center items-start ">
+              <h1 className="hero__title xl:text-[44px] lg:text-[36px] sm:text-[32px] w-full text-center md:text-left text-[24px] text-white font-bold">
                 <span className="jc-text-linear text-[32px] sm:text-[36px] xl:text-[48px] lg:text-[40px] ">
                   {" "}
                   Your{" "}
@@ -26,15 +26,15 @@ export default function Home() {
                 </span>
               </h1>
 
-              <button className="hidden sm:inline-block hero__cta-btn relative mt-[30px] jc-btn jc-bg-linear font-bold hover:text-white jc-text-black text-base">
+              <button className="hidden md:inline-block hero__cta-btn relative mt-[30px] jc-btn jc-bg-linear font-bold hover:text-white jc-text-black text-base">
                 Get Started for Free
               </button>
-              <button className="mx-auto inline-block sm:hidden relative mt-[30px] jc-btn jc-bg-linear font-bold hover:text-white jc-text-black text-base">
+              <button className="mx-auto inline-block md:hidden relative mt-[30px] jc-btn jc-bg-linear font-bold hover:text-white jc-text-black text-base">
                 BUILD YOUR RESUME
               </button>
             </div>
-            <div className="mt-[10vh]  sm:mt-0 mb-[25px] sm:mb-0 col-span-12 sm:col-span-5  z-10  order-1 sm:order-2">
-              <div className="hero__img sm:float-right mx-auto sm:mx-0 items-center max-w-[300px] sm:max-w-[550px] ">
+            <div className="mt-[10vh]  md:mt-0 mb-[25px] md:mb-0 col-span-12 md:col-span-5  z-10  order-1 md:order-2">
+              <div className="hero__img md:float-right mx-auto md:mx-0 items-center max-w-[400px] md:max-w-[550px] ">
                 <img src="imgs/hero-img.png" className=" " alt="" />
               </div>
             </div>

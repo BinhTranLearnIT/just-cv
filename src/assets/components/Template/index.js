@@ -1,0 +1,9 @@
+export { default as Avatar } from "./Avatar";
+export { default as Contact } from "./Contact";
+export { default as Education } from "./Education";
+export { default as Experience } from "./Experience";
+export { default as Objective } from "./Objective";
+export { default as Skills } from "./Skills";
+export { default as Languages } from "./Languages";
+export { default as Name } from "./Name";
+export { default as Projects } from "./Projects";

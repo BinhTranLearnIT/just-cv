@@ -2,30 +2,35 @@ import React, { useEffect, useState } from "react";
 import "./Header.css";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [isNavOpen, setIsNavOpen] = useState(false);
 
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const timeout = setTimeout(() => setHasMounted(true), 600);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(timeout);
+    };
   }, []);
   return (
     <header
       className={`sticky top-0 w-full z-50 ${
         scrolled ? "header--scrolled" : ""
-      }`}
+      }   `}
     >
       <div
         className={`header__mobile h-[55vh] py-[20px] bg-white 
           shadow-[0_4px_10px_0_rgba(0,0,0,0.25)]
           rounded-bl-lg rounded-br-lg
        top-[-50px] left-0 absolute  w-full flex flex-col justify-end
-       transform transition duration-500 ease-out opacity-0 ${
-         isNavOpen ? "slide-down" : "slide-up pointer-events-none -z-10"
-       }
+       transform  duration-500 ease-out ${
+         hasMounted ? "transition-all" : "transition-none invisible"
+       } ${isNavOpen ? "slide-down" : "slide-up pointer-events-none -z-10"} 
       `}
       >
         <button className="jc-hover py-6 jc-text-black jc-text-sm font-semibold ">

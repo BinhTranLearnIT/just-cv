@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],
+        lora: ["Lora", "serif"],
       },
     },
   },

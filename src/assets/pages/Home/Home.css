@@ -77,7 +77,9 @@
 
 .tech__heading {
   border-radius: 200px;
-  background-image: url("./imgs/tech-heading-bg.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/imgs/tech-heading-bg.jpg");
+
   background-position: center;
   background-size: cover;
 }
@@ -115,26 +117,30 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-.footer__line {
-  position: relative;
+
+@media (min-width: 640px) {
+  .footer__line {
+    position: relative;
+  }
+  .footer__line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      #343045 0%,
+      #c0b7e8 35%,
+      #8176af 69%,
+      #343045 99%
+    );
+    background-color: #ff0d0d;
+  }
 }
-.footer__line::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  height: auto;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    #343045 0%,
-    #c0b7e8 35%,
-    #8176af 69%,
-    #343045 99%
-  );
-  background-color: #ff0d0d;
-}
+
 .footer__line-w {
   height: 1px;
   background: linear-gradient(
