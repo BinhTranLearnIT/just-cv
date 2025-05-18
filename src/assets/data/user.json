@@ -1,79 +1,83 @@
 {
   "id": 1,
-  "name": {
-    "firstName": "Binh",
-    "lastName": "Tran",
-    "jobTitle": "frontend Developer"
-  },
-
-  "avatar": "./imgs/template/avatar.jpg",
-  "contact": {
-    "email": "tranngocbaobinh@gmail.com",
-    "address": "LK1-09, Nguyen Bao Duc, Bien Hoa, Dong Nai",
-    "phone": "0968547601",
-    "birthday": "Feb 18, 1993",
-    "nationality": "Vietnam",
-    "social": "tranngocbaobinh.io"
-  },
-  "objective": "Passionate and detail-oriented Frontend Developer seeking to leverage my skills in HTML, CSS, JavaScript, and modern frameworks like React to build responsive and user-friendly web applications. I aim to continuously learn, grow professionally, and contribute to creating intuitive digital experiences within a collaborative and innovative team environment.",
-  "skills": [
-    "Responsive Web Design",
-    "JavaScript (ES6+)",
-    "React.js",
-    "HTML5/CSS3",
-    "TailwindCSS",
-    "Version Control (Git)",
-    "RESTful APIs",
-    "UI/UX Collaboration"
-  ],
-  "languages": [
-    {
-      "language": "English",
-      "proficiency": "fluent"
+  "userTemplate": "",
+  "userData": {
+    "id": 1,
+    "name": {
+      "firstName": "Binh",
+      "lastName": "Tran",
+      "jobTitle": "frontend Developer"
     },
-    {
-      "language": "Chinese",
-      "proficiency": "intermediate"
-    }
-  ],
-  "experience": [
-    {
-      "position": "Frontend Developer",
-      "company": "Apex Corporation",
-      "location": "Ho Chi Minh city",
-      "startDate": "feb 2018",
-      "endDate": "present",
-      "description": [
-        "Built responsive web interfaces using React.js",
-        "Collaborated with backend team to integrate REST APIs",
-        "Improved website performance by 30%"
-      ]
-    },
-    {
-      "position": "accounting director",
-      "company": "apex corporation",
-      "location": "",
-      "startDate": "feb 2018",
-      "endDate": "jun 2020",
-      "description": []
-    }
-  ],
-  "education": [
-    {
-      "degree": "Managerial Accounting",
-      "institution": "UTE Hochiminh city",
-      "location": "Ho Chi Minh city",
-      "startDate": "Fed 2010",
-      "endDate": "Present",
-      "description": []
-    }
-  ],
-  "projects": [
-    {
-      "project": "JustRS - Build Your Resume",
 
-      "link": "justrs.io",
-      "description": ["help your build your resume", "free download"]
-    }
-  ]
+    "avatar": "./imgs/template/avatar.jpg",
+    "contact": {
+      "email": "tranngocbaobinh@gmail.com",
+      "address": "LK1-09, Nguyen Bao Duc, Bien Hoa, Dong Nai",
+      "phone": "0968547601",
+      "birthday": "Feb 18, 1993",
+      "nationality": "Vietnam",
+      "social": "tranngocbaobinh.io"
+    },
+    "objective": "Passionate and detail-oriented Frontend Developer seeking to leverage my skills in HTML, CSS, JavaScript, and modern frameworks like React to build responsive and user-friendly web applications. I aim to continuously learn, grow professionally, and contribute to creating intuitive digital experiences within a collaborative and innovative team environment.",
+    "skills": [
+      "Responsive Web Design",
+      "JavaScript (ES6+)",
+      "React.js",
+      "HTML5/CSS3",
+      "TailwindCSS",
+      "Version Control (Git)",
+      "RESTful APIs",
+      "UI/UX Collaboration"
+    ],
+    "languages": [
+      {
+        "language": "English",
+        "proficiency": "fluent"
+      },
+      {
+        "language": "Chinese",
+        "proficiency": "intermediate"
+      }
+    ],
+    "experience": [
+      {
+        "position": "Frontend Developer",
+        "company": "Apex Corporation",
+        "location": "Ho Chi Minh city",
+        "startDate": "feb 2018",
+        "endDate": "present",
+        "description": [
+          "Built responsive web interfaces using React.js",
+          "Collaborated with backend team to integrate REST APIs",
+          "Improved website performance by 30%"
+        ]
+      },
+      {
+        "position": "accounting director",
+        "company": "apex corporation",
+        "location": "",
+        "startDate": "feb 2018",
+        "endDate": "jun 2020",
+        "description": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Managerial Accounting",
+        "institution": "UTE Hochiminh city",
+        "location": "Ho Chi Minh city",
+        "startDate": "Fed 2010",
+        "endDate": "Present",
+        "description": []
+      }
+    ],
+    "projects": [
+      {
+        "project": "JustRS - Build Your Resume",
+        "link": "justrs.io",
+        "description": ["help your build your resume", "free download"]
+      }
+    ],
+    "certification": []
+  }
 }

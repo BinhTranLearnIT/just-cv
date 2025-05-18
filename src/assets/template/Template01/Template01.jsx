@@ -10,17 +10,18 @@ import {
   Name,
   Projects,
 } from "../../components/Template";
-import userData from "../../data/user.json";
+
+import { useSelector } from "react-redux";
 
 export default function Template01() {
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    // Giả lập lấy dữ liệu như API
-    setTimeout(() => {
-      setUser(userData);
-    }, 500); // giả lập delay 500ms
-    console.log("user update :", user);
-  }, [user]);
+  const user = useSelector((state) => state.user.userData);
+  // useEffect(() => {
+  //   // Giả lập lấy dữ liệu như API
+  //   setTimeout(() => {
+  //     setUser(userData);
+  //   }, 500); // giả lập delay 500ms
+  //   console.log("user update :", user);
+  // }, [user]);
   return (
     <div className="template__container w-[816px] mx-auto  min-h-[1056px] relative font-sans">
       <div className="template__background bg-white absolute w-full h-full  z-0">

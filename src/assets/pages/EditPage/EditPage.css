@@ -1,0 +1,4 @@
+.jc-form__section-input input:focus + .jc-form__section-input--decor {
+  opacity: 1;
+  transform: scale(1);
+}

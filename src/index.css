@@ -23,6 +23,9 @@
   .jc-text-black {
     color: #343045;
   }
+  .jc-text-gray {
+    color: #8281a2;
+  }
   .jc-bg-linear {
     background: linear-gradient(to right, #8176af 0%, #c0b7e8 100%);
   }

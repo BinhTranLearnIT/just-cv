@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
+import { Link, useNavigate } from "react-router-dom";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  const navigate = useNavigate();
+  const navigateLink = (_link) => {
+    return navigate(_link);
+  };
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -36,9 +41,11 @@ export default function Header() {
         <button className="jc-hover py-6 jc-text-black jc-text-sm font-semibold ">
           Home
         </button>
-        <button className=" jc-hover py-6 jc-text-black jc-text-sm font-semibold">
-          Template
-        </button>
+        <Link to="/templates">
+          <button className=" jc-hover py-6 jc-text-black jc-text-sm font-semibold">
+            Templates
+          </button>
+        </Link>
         <button className="jc-hover py-6 jc-text-black jc-text-sm font-semibold">
           Language
         </button>
@@ -59,9 +66,14 @@ export default function Header() {
           <button className="jc-hover py-6 text-white jc-text-sm font-semibold ">
             Home
           </button>
-          <button className=" jc-hover py-6 text-white jc-text-sm font-semibold">
-            Template
+
+          <button
+            onClick={() => navigateLink("/templates")}
+            className=" jc-hover py-6 text-white jc-text-sm font-semibold"
+          >
+            Templates
           </button>
+
           <button className="jc-hover py-6 text-white jc-text-sm font-semibold">
             Language
           </button>

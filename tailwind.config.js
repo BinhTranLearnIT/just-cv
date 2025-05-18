@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Montserrat", "sans-serif"],
+        sans: ["Roboto", "sans-serif"],
         lora: ["Lora", "serif"],
       },
     },

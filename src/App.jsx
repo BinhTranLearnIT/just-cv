@@ -1,6 +1,16 @@
+import EditPage from "./assets/pages/EditPage/EditPage.jsx";
 import Home from "./assets/pages/Home/Home.jsx";
-import Template01 from "./assets/template/Template01/Template01.jsx";
+import Templates from "./assets/pages/Templates/Templates.jsx";
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 export default function App() {
-  return <Template01 />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} exact />
+        <Route path="/templates" element={<Templates />} />
+        <Route path="/edit" element={<EditPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
