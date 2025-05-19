@@ -24,6 +24,9 @@ const userSlice = createSlice({
     setObjective(state, action) {
       state.userData = { ...state.userData, ...action.payload };
     },
+    updateSkills(state, action) {
+      state.userData = { ...state.userData, ...action.payload };
+    },
     clearUser: () => initialState,
   },
 });
@@ -35,5 +38,6 @@ export const {
   setAvatar,
   updateContact,
   setObjective,
+  updateSkills,
 } = userSlice.actions;
 export default userSlice.reducer;

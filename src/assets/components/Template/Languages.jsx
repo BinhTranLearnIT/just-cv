@@ -5,16 +5,16 @@ export default function Languages({ data, ...props }) {
     return (
       <section id="languages">
         <ul className="tp-section__list mt-[4px] mb-[8px] pl-[14px] list-none">
-          {data.map((value) => {
+          {data.map(({ name, level }) => {
             return (
               <li className="tp-section__item mt-[8px] text-[14px] font-[400] leading-[22px] flex text-[#3f3f3f] relative capitalize">
-                <p>{value.language}</p>
+                <p>{name}</p>
 
-                {value.proficiency ? (
+                {level ? (
                   <p>
                     &nbsp;
                     {" | "}
-                    <span className="italic"> {value.proficiency}</span>
+                    <span className="italic"> {level}</span>
                   </p>
                 ) : (
                   ""

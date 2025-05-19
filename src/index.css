@@ -13,10 +13,7 @@
     @apply opacity-80 hover:opacity-100 ease-in-out cursor-pointer;
   }
   .jc-btn {
-    @apply px-[38px] py-[12px] rounded-[40px] font-bold jc-text-black hover:text-white ease-in-out;
-  }
-  .jc-text-linear {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#8176af] to-[#c0b7e8];
+    @apply px-[38px] py-[12px] rounded-[40px] font-bold jc-text-black hover:text-white ease-in;
   }
 }
 @layer utilities {
@@ -46,6 +43,12 @@
   }
   .jc-text-sm {
     @apply text-[12px] md:text-[14px] lg:text-[14px];
+  }
+  .jc-text-linear {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#8176af] to-[#c0b7e8];
+  }
+  .jc-link {
+    @apply cursor-pointer no-underline text-[#19a1f0] hover:text-[#10529b] transition-colors duration-100 ease-linear;
   }
   .jc-section__heading {
     @apply text-[26px] md:text-[24px] lg:text-[32px] font-semibold leading-none text-white;

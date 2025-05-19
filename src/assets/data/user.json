@@ -1,6 +1,6 @@
 {
   "id": 1,
-  "userTemplate": "",
+  "userTemplate": "template01",
   "userData": {
     "id": 1,
     "name": {
@@ -20,23 +20,19 @@
     },
     "objective": "Passionate and detail-oriented Frontend Developer seeking to leverage my skills in HTML, CSS, JavaScript, and modern frameworks like React to build responsive and user-friendly web applications. I aim to continuously learn, grow professionally, and contribute to creating intuitive digital experiences within a collaborative and innovative team environment.",
     "skills": [
-      "Responsive Web Design",
-      "JavaScript (ES6+)",
-      "React.js",
-      "HTML5/CSS3",
-      "TailwindCSS",
-      "Version Control (Git)",
-      "RESTful APIs",
-      "UI/UX Collaboration"
+      {
+        "name": "Responsive Web Design",
+        "level": ""
+      }
     ],
     "languages": [
       {
-        "language": "English",
-        "proficiency": "fluent"
+        "name": "English",
+        "level": "fluent"
       },
       {
-        "language": "Chinese",
-        "proficiency": "intermediate"
+        "name": "Chinese",
+        "level": "intermediate"
       }
     ],
     "experience": [

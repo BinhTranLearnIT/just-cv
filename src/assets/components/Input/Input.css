@@ -1,0 +1,27 @@
+.jc-form__section {
+  width: 100%;
+  border-radius: 4px;
+  background-color: white;
+  padding: 20px 32px;
+}
+
+.jc-form__section-input--explain > div {
+  transition: top 0.1s ease-in, opacity 0.1s ease-in;
+  top: -40px;
+  opacity: 0;
+}
+
+.jc-form__section-input--explain:hover > div {
+  top: -50px;
+  opacity: 1;
+}
+.jc-form__section-input input:focus + .jc-form__section-input--decor {
+  opacity: 1;
+  transform: scale(1);
+}
+.test {
+  color: red;
+}
+.jc-form__section-input:focus-within + .test {
+  color: blue;
+}
