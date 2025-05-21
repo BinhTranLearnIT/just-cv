@@ -2,13 +2,13 @@ import React from "react";
 import "./card.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setTemplate } from "../../features/user/userSlice";
+import { updateUserTemplate } from "../../features/user/userSlice";
 export default function Card({ name, src, link, ...props }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   function handleClick(e) {
-    dispatch(setTemplate(name));
+    dispatch(updateUserTemplate(name));
     navigate("/edit");
   }
 

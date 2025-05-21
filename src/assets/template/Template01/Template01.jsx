@@ -12,6 +12,7 @@ import {
 } from "../../components/Template";
 
 import { useSelector } from "react-redux";
+import checkData from "../../utils/checkData";
 
 export default function Template01() {
   const user = useSelector((state) => state.user.userData);
@@ -72,7 +73,7 @@ export default function Template01() {
                   <Contact data={user.contact} />
                 </div>
               )}
-              {user?.skills && (
+              {checkData(user.skills) && (
                 <div className="template__section flex flex-col">
                   <div className="template__section--title w-fit uppercase text-[14px] text-[#3f3f3f] font-[700] tracking-[3.22px] mt-[28px] mb-[12px] px-[5px] pr-[10px]">
                     <p className="tp-section__title font-lora">Skills</p>
@@ -197,7 +198,7 @@ export default function Template01() {
                   <Skills data={user.skills} />
                 </div>
               )}
-              {user?.languages && (
+              {checkData(user.languages) && (
                 <div className="template__section flex flex-col">
                   <div className="template__section--title w-fit uppercase text-[14px] text-[#3f3f3f] font-[700] tracking-[3.22px] mt-[28px] mb-[12px] px-[5px] pr-[10px]">
                     <p className="tp-section__title font-lora">LANGUAGES</p>
@@ -325,12 +326,12 @@ export default function Template01() {
             </div>
             {/*------ right column------ */}
             <div className="template__column--right w-auto">
-              {user?.objective && (
+              {checkData(user.objective) && (
                 <div className="template__section">
                   <Objective data={user.objective} />
                 </div>
               )}
-              {user?.experience && (
+              {checkData(user.experience) && (
                 <div className="template__section flex flex-col">
                   <div className="template__section--title w-fit uppercase text-[14px] text-[#3f3f3f] font-[700] tracking-[3.22px] mt-[28px] mb-[12px] px-[5px] pr-[10px]">
                     <p className="tp-section__title font-lora">EXPERIENCE</p>
@@ -455,7 +456,7 @@ export default function Template01() {
                   <Experience data={user.experience} />
                 </div>
               )}
-              {user?.education && (
+              {checkData(user.education) && (
                 <div className="template__section flex flex-col">
                   <div className="template__section--title w-fit uppercase text-[14px] text-[#3f3f3f] font-[700] tracking-[3.22px] mt-[28px] mb-[12px] px-[5px] pr-[10px]">
                     <p className="tp-section__title font-lora">EDUCATION</p>
@@ -580,7 +581,7 @@ export default function Template01() {
                   <Education data={user.education} />
                 </div>
               )}
-              {user?.projects && (
+              {checkData(user.projects) && (
                 <div className="template__section flex flex-col">
                   <div className="template__section--title w-fit uppercase text-[14px] text-[#3f3f3f] font-[700] tracking-[3.22px] mt-[28px] mb-[12px] px-[5px] pr-[10px]">
                     <p className="tp-section__title font-lora">PROJECTS</p>

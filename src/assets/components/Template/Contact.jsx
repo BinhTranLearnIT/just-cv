@@ -2,6 +2,14 @@ import React from "react";
 
 export default function Contact({ data, ...props }) {
   if (data) {
+    // data={
+    //   email:"",
+    //   address:"",
+    //   phone:"",
+    //   birthday:"",
+    //   nationality:"",
+    //   social:""
+    // }
     return (
       <section
         id="contact-information"

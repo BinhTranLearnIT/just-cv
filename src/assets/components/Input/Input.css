@@ -5,14 +5,29 @@
   padding: 20px 32px;
 }
 
+/* .jc-form__section-input--explain > div {
+  transition: transform 0.1s ease-in, opacity 0.1s ease-in;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%), translateY(0);
+  opacity: 1;
+}
+
+.jc-form__section-input--explain:hover > div {
+  transform: translateX(-50%), translateY(-110%);
+
+  opacity: 1;
+} */
 .jc-form__section-input--explain > div {
-  transition: top 0.1s ease-in, opacity 0.1s ease-in;
-  top: -40px;
+  transition: transform 0.1s ease-in, opacity 0.1s ease-in;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -80%); /* Correct syntax */
   opacity: 0;
 }
 
 .jc-form__section-input--explain:hover > div {
-  top: -50px;
+  transform: translate(-50%, -130%); /* Combine X and Y in one */
   opacity: 1;
 }
 .jc-form__section-input input:focus + .jc-form__section-input--decor {
