@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { updateEducation } from "../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import stringWithBreaksToArray from "../../utils/string/stringWithBreaksToArray";
 import stringFromArrayWithBreaks from "../../utils/string/stringFromArrayWithBreaks";
-import { updateExperience } from "../../features/user/userSlice";
 
-function ExperienceInput({ name, value, label, onChange, index }) {
+function EducationInput({ name, value, label, onChange, index }) {
   const isDescription = name === "description";
   const handleChange = (e) => onChange(e, index, "change");
   const handleKeyDown = (e) => onChange(e, index, "keydown");
@@ -41,35 +41,35 @@ function ExperienceInput({ name, value, label, onChange, index }) {
   );
 }
 
-export default function FormItemExperience({ exp, index, ...props }) {
+export default function FormItemEducation({ edu, index, ...props }) {
   const dispatch = useDispatch();
   const [showInputField, setShowInputField] = useState(false);
   const toggleInputField = () => {
     setShowInputField(!showInputField);
   };
 
-  const userExperienceList = useSelector(
-    (state) => state.user.userData.experience
+  const userEducationList = useSelector(
+    (state) => state.user.userData.education
   );
   const removeItem = (index) => {
-    const newList = [...userExperienceList].filter((_, i) => i !== index);
+    const newList = [...userEducationList].filter((_, i) => i !== index);
 
     console.log("xoa ne : list moi ", newList);
-    dispatch(updateExperience({ experience: newList }));
+    dispatch(updateEducation({ education: newList }));
   };
 
   const handleChange = (e, index) => {
-    const updated = [...userExperienceList];
+    const updated = [...userEducationList];
     updated[index] = {
       ...updated[index],
       [e.target.name]: e.target.value,
     };
 
-    dispatch(updateExperience({ experience: updated }));
+    dispatch(updateEducation({ education: updated }));
   };
 
   const handleDescriptionChange = (e, index, type) => {
-    const updated = [...userExperienceList];
+    const updated = [...userEducationList];
     const fieldName = e.target.name;
 
     if (type === "change") {
@@ -84,11 +84,11 @@ export default function FormItemExperience({ exp, index, ...props }) {
       };
     }
 
-    dispatch(updateExperience({ experience: updated }));
+    dispatch(updateEducation({ education: updated }));
   };
   const fields = [
-    { name: "position", label: "Position" },
-    { name: "company", label: "Company" },
+    { name: "degree", label: "Degree" },
+    { name: "institution", label: "Institution" },
     { name: "startDate", label: "Start Date" },
     { name: "endDate", label: "End Date" },
     { name: "location", label: "Location" },
@@ -100,25 +100,25 @@ export default function FormItemExperience({ exp, index, ...props }) {
       className="relative w-full px-[20px] py-[15px] border border-gray-300 overflow-hidden"
     >
       <div
-        className={`epx-label ${
+        className={`edu-label ${
           showInputField ? "mb-[15px]" : ""
         } relative h-[53px] border-b border-gray-300 pb-[10px]`}
       >
         <div className="text-[16px] font-[600]">
-          {exp.position ? exp.position : "Your experience"}
+          {edu.degree ? edu.degree : "Your Degree"}
         </div>
         <div className="text-[12px] flex capitalize jc-text-gray ">
-          <span>{exp.startDate}</span>
-          {exp.endDate && <span className="mx-[8px]">-</span>}
+          <span>{edu.startDate}</span>
+          {edu.endDate && <span className="mx-[8px]">-</span>}
 
-          <span>{exp.endDate}</span>
+          <span>{edu.endDate}</span>
         </div>
-        <div class="absolute flex items-baseline border-l-2 right-[0] pl-[20px] top-[20px] transform -translate-y-1/2">
-          <button
-            className="text-[#8281a2] hover:text-blue-500 flex items-baseline cursor-pointer px-[10px] py-[5px]"
+        <div class="absolute flex items-baseline border-l-2 right-[12px] pl-[20px] top-[20px] transform -translate-y-1/2">
+          <div
+            className="text-[#8281a2] hover:text-blue-500 cursor-pointer px-[10px] py-[5px]"
             onClick={toggleInputField}
           >
-            <div>
+            <button className="">
               <svg
                 width="20"
                 height="20"
@@ -130,9 +130,8 @@ export default function FormItemExperience({ exp, index, ...props }) {
               >
                 <path d="M17.4413 6.25577c.7449.7448.7449 1.95236 0 2.69716L8.81405 17.5791c-.26829.2682-.63216.4189-1.01157.4189h-3.3719C3.64049 17.998 3 17.3576 3 16.5676v-3.3714c0-.3794.15072-.7432.41901-1.0115l8.62729-8.6261c.7449-.7448 1.9526-.7448 2.6975 0l2.6975 2.69717zM16.0926 7.6043l-2.6975-2.69717-6.62463 6.62377 2.69752 2.6971 6.62461-6.6237zm-7.97337 7.9723l-2.69752-2.6972-.44072.4407.01168 2.6855 2.68584.0117.44072-.4407z"></path>
               </svg>
-            </div>
-
-            <div
+            </button>
+            <button
               className={`transform  ${
                 showInputField ? "-rotate-90" : "rotate-90"
               } `}
@@ -147,8 +146,9 @@ export default function FormItemExperience({ exp, index, ...props }) {
               >
                 <path d="M9.431 7.257l1.352-1.474 5.893 5.48a1 1 0 0 1 0 1.474l-5.893 5.45-1.352-1.475L14.521 12 9.43 7.257z"></path>
               </svg>
-            </div>
-          </button>
+            </button>
+          </div>
+
           <button
             onClick={() => removeItem(index)}
             class=" flex  font-[400] text-[14px]  px-[10px] py-[5px]  text-[#8281a2] hover:text-red-500 transition-colors duration-100"
@@ -171,15 +171,15 @@ export default function FormItemExperience({ exp, index, ...props }) {
       <div
         className={`grid gap-x-[40px] gap-y-[24px] grid-cols-2 ${
           showInputField
-            ? "jc-animation-slide-down mb-6 "
+            ? "jc-animation-slide-down mt-6  "
             : "jc-animation-slide-up"
         }  `}
       >
         {fields.map(({ name, label }) => (
           <div className="col-span-1" key={name}>
-            <ExperienceInput
+            <EducationInput
               name={name}
-              value={exp[name]}
+              value={edu[name]}
               label={label}
               index={index}
               onChange={handleChange}
@@ -187,9 +187,9 @@ export default function FormItemExperience({ exp, index, ...props }) {
           </div>
         ))}
         <div className="col-span-2">
-          <ExperienceInput
+          <EducationInput
             name="description"
-            value={Array.isArray(exp.description) ? exp.description : []}
+            value={Array.isArray(edu.description) ? edu.description : []}
             label="Description"
             index={index}
             onChange={handleDescriptionChange}

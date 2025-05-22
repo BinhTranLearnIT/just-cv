@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import stringWithBreaksToArray from "../../utils/string/stringWithBreaksToArray";
 import stringFromArrayWithBreaks from "../../utils/string/stringFromArrayWithBreaks";
-import { updateExperience } from "../../features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProjects } from "../../features/user/userSlice";
+import stringWithBreaksToArray from "../../utils/string/stringWithBreaksToArray";
 
-function ExperienceInput({ name, value, label, onChange, index }) {
+function ProjectInput({ name, value, label, onChange, index }) {
   const isDescription = name === "description";
   const handleChange = (e) => onChange(e, index, "change");
   const handleKeyDown = (e) => onChange(e, index, "keydown");
@@ -40,32 +40,29 @@ function ExperienceInput({ name, value, label, onChange, index }) {
     </div>
   );
 }
-
-export default function FormItemExperience({ exp, index, ...props }) {
+export default function FormItemProject({ pj, index, ...props }) {
   const dispatch = useDispatch();
   const [showInputField, setShowInputField] = useState(false);
   const toggleInputField = () => {
     setShowInputField(!showInputField);
   };
 
-  const userExperienceList = useSelector(
-    (state) => state.user.userData.experience
-  );
+  const userProjects = useSelector((state) => state.user.userData.projects);
   const removeItem = (index) => {
-    const newList = [...userExperienceList].filter((_, i) => i !== index);
+    const newList = [...userProjects].filter((_, i) => i !== index);
 
     console.log("xoa ne : list moi ", newList);
-    dispatch(updateExperience({ experience: newList }));
+    dispatch(updateProjects({ projects: newList }));
   };
 
   const handleChange = (e, index) => {
-    const updated = [...userExperienceList];
+    const updated = [...userProjects];
     updated[index] = {
       ...updated[index],
       [e.target.name]: e.target.value,
     };
 
-    dispatch(updateExperience({ experience: updated }));
+    dispatch(updateProjects({ projects: updated }));
   };
 
   const handleDescriptionChange = (e, index, type) => {
@@ -84,14 +81,11 @@ export default function FormItemExperience({ exp, index, ...props }) {
       };
     }
 
-    dispatch(updateExperience({ experience: updated }));
+    dispatch(updateProjects({ projects: updated }));
   };
   const fields = [
-    { name: "position", label: "Position" },
-    { name: "company", label: "Company" },
-    { name: "startDate", label: "Start Date" },
-    { name: "endDate", label: "End Date" },
-    { name: "location", label: "Location" },
+    { name: "project", label: "Project" },
+    { name: "link", label: "Link" },
   ];
 
   return (
@@ -100,18 +94,15 @@ export default function FormItemExperience({ exp, index, ...props }) {
       className="relative w-full px-[20px] py-[15px] border border-gray-300 overflow-hidden"
     >
       <div
-        className={`epx-label ${
+        className={`pj-label ${
           showInputField ? "mb-[15px]" : ""
         } relative h-[53px] border-b border-gray-300 pb-[10px]`}
       >
         <div className="text-[16px] font-[600]">
-          {exp.position ? exp.position : "Your experience"}
+          {pj.project ? pj.project : "Your Project"}
         </div>
-        <div className="text-[12px] flex capitalize jc-text-gray ">
-          <span>{exp.startDate}</span>
-          {exp.endDate && <span className="mx-[8px]">-</span>}
-
-          <span>{exp.endDate}</span>
+        <div className="text-[14px] flex capitalize text-blue-500 ">
+          <span>{pj.link}</span>
         </div>
         <div class="absolute flex items-baseline border-l-2 right-[0] pl-[20px] top-[20px] transform -translate-y-1/2">
           <button
@@ -177,9 +168,9 @@ export default function FormItemExperience({ exp, index, ...props }) {
       >
         {fields.map(({ name, label }) => (
           <div className="col-span-1" key={name}>
-            <ExperienceInput
+            <ProjectInput
               name={name}
-              value={exp[name]}
+              value={pj[name]}
               label={label}
               index={index}
               onChange={handleChange}
@@ -187,9 +178,9 @@ export default function FormItemExperience({ exp, index, ...props }) {
           </div>
         ))}
         <div className="col-span-2">
-          <ExperienceInput
+          <ProjectInput
             name="description"
-            value={Array.isArray(exp.description) ? exp.description : []}
+            value={Array.isArray(pj.description) ? pj.description : []}
             label="Description"
             index={index}
             onChange={handleDescriptionChange}

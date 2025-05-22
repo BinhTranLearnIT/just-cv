@@ -26,14 +26,15 @@ export default function Education({ data, ...props }) {
             </div>
           </div>
           <div className="tp-education__description  font-[400] text-[#3f3f3fB3]  pl-[16px]">
-            {edu.description.map((des) => (
-              <p className="relative mt-[8px]">
-                {des}
-                <span className="absolute top-[-5px] left-[-12px] font-[600] text-[20px]">
-                  .
-                </span>
-              </p>
-            ))}
+            {Array.isArray(edu.description) &&
+              edu.description.map((des) => (
+                <p className="relative mt-[8px]">
+                  {des}
+                  <span className="absolute top-[-5px] left-[-12px] font-[600] text-[20px]">
+                    .
+                  </span>
+                </p>
+              ))}
           </div>
         </div>
       ))}

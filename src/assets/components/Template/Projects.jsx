@@ -32,10 +32,10 @@ export default function Projects({ data, ...props }) {
                       )}
                     </p>
                   ))
-                : exp.description && (
+                : pj.description && (
                     <p className="relative mt-[8px]">
-                      {exp.description}
-                      {exp.description && (
+                      {pj.description}
+                      {pj.description && (
                         <span className="absolute top-[-5px] left-[-12px] font-[600] text-[20px]">
                           .
                         </span>

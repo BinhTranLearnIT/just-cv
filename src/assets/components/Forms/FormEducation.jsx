@@ -1,34 +1,32 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FormItemExperience from "./FormItemExperience";
-import { updateExperience } from "../../features/user/userSlice";
+import { updateEducation } from "../../features/user/userSlice";
+import FormItemEducation from "./FormItemEducation";
 
-export default function FormTest() {
-  const userExperienceList = useSelector(
-    (state) => state.user.userData.experience
+export default function FormEducation() {
+  const userEducationList = useSelector(
+    (state) => state.user.userData.education
   );
   const dispatch = useDispatch();
   const addItem = () => {
-    const newList = [...userExperienceList, {}];
+    const newList = [...userEducationList, {}];
 
-    dispatch(updateExperience({ experience: newList }));
+    dispatch(updateEducation({ education: newList }));
   };
-
   return (
     <section className="jc-form__section w-full bg-white rounded px-[32px] py-[20px]">
       <div className="text-[23px] font-[600] mb-[20px] text-black">
-        Experience
+        Education
       </div>
-
       <div className="flex flex-col space-y-[8px]">
-        {userExperienceList.map((exp, index) => (
-          <FormItemExperience exp={exp} index={index} />
+        {userEducationList.map((edu, index) => (
+          <FormItemEducation edu={edu} index={index} />
         ))}
       </div>
 
       <div className="font-[600] text-[14px] px-[20px] py-[15px]">
         <button className="jc-link" onClick={addItem}>
-          + Add one more experience
+          + Add one more
         </button>
       </div>
     </section>
