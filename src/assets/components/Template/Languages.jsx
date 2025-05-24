@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function Languages({ data, ...props }) {
+export default function Languages({
+  data,
+  languageClass,
+  levelClass,
+  ...props
+}) {
   if (data) {
     return (
       <section id="languages">
@@ -8,16 +13,29 @@ export default function Languages({ data, ...props }) {
           {data.map(({ name, level }) => {
             return (
               <li className="tp-section__item mt-[8px] text-[14px] font-[400] leading-[22px] flex text-[#3f3f3f] relative capitalize">
-                <p>{name}</p>
+                <div
+                  className={`w-fit inline-block ${
+                    languageClass
+                      ? languageClass
+                      : "text-[14px] font-[400] text-[#3f3f3f] "
+                  }`}
+                >
+                  {name}
+                </div>
 
-                {level ? (
-                  <p>
-                    &nbsp;
-                    {" | "}
-                    <span className="italic"> {level}</span>
-                  </p>
-                ) : (
-                  ""
+                {level && (
+                  <div className="border-l-2 pl-[4px] ml-[8px] h-fit">
+                    <span
+                      className={`${
+                        levelClass
+                          ? levelClass
+                          : "italic text-[14px] font-[400] text-[#3f3f3f]"
+                      }`}
+                    >
+                      {" "}
+                      {level}
+                    </span>
+                  </div>
                 )}
 
                 <span className="text-black text-[20px] font-[600] absolute leading-none left-[-14px] top-1/2 -translate-y-1/2 ">

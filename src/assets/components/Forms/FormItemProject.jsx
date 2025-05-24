@@ -66,7 +66,7 @@ export default function FormItemProject({ pj, index, ...props }) {
   };
 
   const handleDescriptionChange = (e, index, type) => {
-    const updated = [...userExperienceList];
+    const updated = [...userProjects];
     const fieldName = e.target.name;
 
     if (type === "change") {

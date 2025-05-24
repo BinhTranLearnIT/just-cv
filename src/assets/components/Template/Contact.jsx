@@ -1,6 +1,14 @@
 import React from "react";
 
-export default function Contact({ data, ...props }) {
+export default function Contact({
+  data,
+  showIcon,
+  contactClass,
+  contactItemClass,
+  contactItemIconClass,
+  contactItemNameClass,
+  ...props
+}) {
   if (data) {
     // data={
     //   email:"",
@@ -13,15 +21,20 @@ export default function Contact({ data, ...props }) {
     return (
       <section
         id="contact-information"
-        className="text-[12px] font-[600] text-[#3f3f3f] "
+        // className="text-[12px] font-[600] text-[#3f3f3f] space-y-[12px] flex flex-col"
+        className={`${contactClass}`}
       >
         <div
           id="email"
-          className={`tp-contact__item mb-[12px]   ${
+          className={`tp-contact__item   ${
             data?.email ? "flex" : "hidden"
-          } items-center gap-[10px] `}
+          }  gap-[10px] ${contactItemClass} `}
         >
-          <div className="tp-contact__item-icon h-[22px] flex items-center">
+          <div
+            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass}${
+              !showIcon && "hidden"
+            }`}
+          >
             <svg
               width="12"
               height="10"
@@ -38,18 +51,22 @@ export default function Contact({ data, ...props }) {
               ></path>
             </svg>
           </div>
-          <div className="tp-contact__item-name leading-none ">
+          <div className={`tp-contact__item-name  ${contactItemNameClass}`}>
             {data.email}
           </div>
         </div>
 
         <div
           id="address"
-          className={`tp-contact__item mb-[12px]  ${
+          className={`tp-contact__item   ${
             data?.address ? "flex" : "hidden"
-          } items-center gap-[10px] `}
+          } gap-[10px] ${contactItemClass}`}
         >
-          <div className="tp-contact__item-icon h-[22px] flex items-center">
+          <div
+            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass}${
+              !showIcon && "hidden"
+            }`}
+          >
             <svg
               width="10"
               height="12"
@@ -66,18 +83,24 @@ export default function Contact({ data, ...props }) {
               ></path>
             </svg>
           </div>
-          <div className="tp-contact__item-name leading-none break-words ">
+          <div
+            className={`tp-contact__item-name  ${contactItemNameClass}  break-words `}
+          >
             {data.address}
           </div>
         </div>
 
         <div
           id="phone"
-          className={`tp-contact__item mb-[12px]   ${
+          className={`tp-contact__item    ${
             data?.phone ? "flex" : "hidden"
-          } items-center gap-[10px] `}
+          } gap-[10px] ${contactItemClass} `}
         >
-          <div className="tp-contact__item-icon h-[22px] flex items-center">
+          <div
+            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass}${
+              !showIcon && "hidden"
+            }`}
+          >
             <svg
               width="8"
               height="12"
@@ -94,18 +117,24 @@ export default function Contact({ data, ...props }) {
               ></path>
             </svg>
           </div>
-          <div className="tp-contact__item-name leading-none tracking-[1.5px] ">
+          <div
+            className={`tp-contact__item-name  ${contactItemNameClass} tracking-[1.5px] `}
+          >
             {data.phone}
           </div>
         </div>
 
         <div
           id="birthday"
-          className={`tp-contact__item mb-[12px]   ${
+          className={`tp-contact__item   ${
             data?.birthday ? "flex" : "hidden"
-          } items-center gap-[10px] `}
+          } gap-[10px] ${contactItemClass}`}
         >
-          <div className="tp-contact__item-icon h-[22px] flex items-center">
+          <div
+            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass} ${
+              !showIcon && "hidden"
+            }`}
+          >
             <svg
               width="12"
               height="12"
@@ -122,18 +151,22 @@ export default function Contact({ data, ...props }) {
               ></path>
             </svg>
           </div>
-          <div className="tp-contact__item-name leading-none ">
+          <div className={`tp-contact__item-name  ${contactItemNameClass}`}>
             {data.birthday}
           </div>
         </div>
 
         <div
           id="nationality"
-          className={`tp-contact__item mb-[12px]   ${
+          className={`tp-contact__item   ${
             data?.nationality ? "flex" : "hidden"
-          } items-center gap-[10px] `}
+          } gap-[10px] ${contactItemClass}`}
         >
-          <div className="tp-contact__item-icon h-[22px] flex items-center">
+          <div
+            className={`tp-contact__item-icon h-[22px] ${contactItemIconClass} ${
+              !showIcon && "hidden"
+            }`}
+          >
             <svg
               width="12"
               height="12"
@@ -150,18 +183,22 @@ export default function Contact({ data, ...props }) {
               ></path>
             </svg>
           </div>
-          <div className="tp-contact__item-name leading-none ">
+          <div className={`tp-contact__item-name  ${contactItemNameClass}`}>
             {data.nationality}
           </div>
         </div>
 
         <div
           id="social"
-          className={`tp-contact__item mb-[12px]   ${
+          className={`tp-contact__item   ${
             data?.social ? "flex" : "hidden"
-          } items-center gap-[10px] `}
+          }  gap-[10px] ${contactItemClass}`}
         >
-          <div className="tp-contact__item-icon h-[22px] flex items-center">
+          <div
+            className={`tp-contact__item-icon h-[22px] ${contactItemIconClass}  ${
+              !showIcon && "hidden"
+            }`}
+          >
             <svg
               width="12"
               height="10"
@@ -178,7 +215,7 @@ export default function Contact({ data, ...props }) {
               ></path>
             </svg>
           </div>
-          <div className="tp-contact__item-name leading-none ">
+          <div className={`tp-contact__item-name  ${contactItemNameClass}`}>
             {data.social}
           </div>
         </div>

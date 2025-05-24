@@ -3,6 +3,7 @@ import Home from "./assets/pages/Home/Home.jsx";
 import Templates from "./assets/pages/Templates/Templates.jsx";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PreviewTemplateLT from "./assets/template/PreviewTemplateLT.jsx";
 export default function App() {
   return (
     <BrowserRouter>
