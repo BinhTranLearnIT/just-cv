@@ -22,12 +22,11 @@ export default function EditPage() {
   const navigate = useNavigate();
   const userTemplate = useSelector((state) => state.user.userTemplate);
   // const PreviewTemplate = Templates[userTemplate];
-  function handleClick() {
-    navigate("/templates");
-  }
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const PersonalRef = useRef();
   const SkillsRef = useRef();
   const SummaryRef = useRef();
@@ -43,15 +42,19 @@ export default function EditPage() {
     <div>
       <div className="">
         <div className="jc-grid bg-[#302c42]">
-          <div className="jc-form col-span-12 lg:col-span-7   flex space-y-[4px] relative  flex-col">
-            <div className="jc-breadcrumb shadow-lg sticky z-10 top-0 px-[32px] py-[20px] text-[#19a1f0]  bg-white rounded-b-[4px]">
+          <div className="jc-form col-span-12 lg:col-span-7 xl:col-span-6   flex space-y-[4px] relative  flex-col">
+            <div className="jc-breadcrumb shadow-lg flex justify-between sticky z-10 top-0 px-[32px] py-[20px] text-[#19a1f0]  bg-white rounded-b-[4px]">
               <button
                 className="jc-link"
-                onClick={handleClick}
+                onClick={() => navigate("/templates")}
               >{`< Back`}</button>
+              <button
+                className="jc-link"
+                onClick={openModal}
+              >{`Preview >`}</button>
             </div>
-            <div className="grid grid-cols-12 gap-[4px]">
-              <div className="col-span-1 relative">
+            <div className="sm:grid sm:grid-cols-12 sm:gap-[4px] flex flex-nowrap">
+              <div className=" sm:col-span-1 relative mr-[4px] sm:mr-0 w-[45px] sm:w-full">
                 <div className="  bg-white rounded-r-[4px]   sticky top-[4px] w-full z-30 transition-all duration-100 ease-in-out ">
                   <div className="flex flex-col overflow-hidden bg-white rounded-r-[4px]  transition-all duration-100 ease-in-out  hover:w-[200px] hover:border-r-2 hover:border-b-2 items-start py-[20px] w-[34px] ml-[10px] sm:ml-[15px] md:ml-[20px] lg:ml-[10px] xl:ml-[20px] space-y-[2px] over ">
                     <button
@@ -375,7 +378,7 @@ export default function EditPage() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-11 flex space-y-[4px] flex-col h-[calc(100vh-68px)] overflow-y-scroll">
+              <div className="sm:col-span-11  flex space-y-[4px] flex-col h-[calc(100vh-68px)] overflow-y-scroll">
                 <div className="" ref={PersonalRef}>
                   <FormPersonalDetails />
                 </div>
@@ -402,7 +405,12 @@ export default function EditPage() {
             </div>
           </div>
 
-          <PreviewTemplateLT template={userTemplate} />
+          <PreviewTemplateLT
+            template={userTemplate}
+            onCloseModal={closeModal}
+            onOpenModal={openModal}
+            isModalOpen={isModalOpen}
+          />
 
           {/* <div className="hidden lg:flex fixed top-0 right-0 w-1/2 h-full  justify-center al ">
             <ModalPreviewTemplate />

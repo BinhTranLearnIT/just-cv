@@ -2,42 +2,80 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Templates } from "./templateMap.jsx";
 import { useReactToPrint } from "react-to-print";
-export default function PreviewTemplateLT({ template, ...props }) {
+export default function PreviewTemplateLT({
+  template,
+
+  onCloseModal,
+  onOpenModal,
+  isModalOpen,
+
+  ...props
+}) {
   const userTemplate = useSelector((state) => state.user.userTemplate);
   const Template = Templates[userTemplate];
 
   // --- scale template ---
-  const [scale, setScale] = useState(1);
   const containerRef = useRef();
+  const containerModal = useRef();
+  const contentModal = useRef();
   const contentRef = useRef();
+
+  const [scale, setScale] = useState(1);
+  const [scaleForModal, setScaleForModal] = useState(1);
+
   const [containerHeight, setContainerHeight] = useState(1);
   const [containerWidth, setContainerWidth] = useState(1);
   const [contentHeight, setContentHeight] = useState(1);
-  const [contentWidth, setContentWidth] = useState(1);
+  const [contentWidth, setContentWidth] = useState(816);
+  const [contentModalWidth, setContentModalWidth] = useState(1);
+  const [contentModalHeight, setContentModalHeight] = useState(1);
+  const [modalWidth, setModalWidth] = useState(1);
+  const [modalHeight, setModalHeight] = useState(undefined);
+
   useEffect(() => {
     setContainerHeight(containerRef.current.offsetHeight);
+    setContainerWidth(containerRef.current.offsetWidth);
+    setContentHeight(contentRef.current.offsetHeight);
+    // setContentWidth(containerRef.current.offsetWidth);
+
     const handleResize = () => {
       if (containerRef.current) {
         const newHeight = containerRef.current.offsetHeight;
         if (newHeight !== containerHeight) {
+          console.log("container Height change");
+
           setContainerHeight(newHeight);
         }
         const newWidth = containerRef.current.offsetWidth;
         if (newWidth !== containerWidth) {
+          console.log("container Width change");
+
           setContainerWidth(newWidth);
         }
       }
+      // if (containerModal.current) {
+      //   const newModalWidth = containerModal.current.offsetWidth;
+      //   //console.log(newModalWidth);
+
+      //   if (newModalWidth !== modalWidth) {
+      //     console.log("container Modal Width change");
+
+      //     setModalWidth(newModalWidth);
+      //   }
+      // }
     };
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  // --- Watching when template size change---
   useEffect(() => {
     if (!contentRef.current) return;
     const observer = new ResizeObserver(() => {
       const height = contentRef.current.offsetHeight;
-      const width = containerRef.current.offsetWidth;
+      const width = contentRef.current.offsetWidth;
+
       setContentHeight(height);
       setContentWidth(width);
       console.log("Chieu cao cua template la: ", height);
@@ -46,20 +84,121 @@ export default function PreviewTemplateLT({ template, ...props }) {
     observer.observe(contentRef.current);
     return () => observer.disconnect();
   }, []);
+  // --- Watching when modal open ---
   useEffect(() => {
-    if (contentHeight > containerHeight) {
-      if (containerWidth < containerWidth * (containerHeight / contentHeight)) {
-        setScale(containerWidth / contentWidth);
-      } else {
-        setScale(containerHeight / contentHeight);
-      }
-
-      //console.log(containerHeight / contentHeight);
-      //console.log(containerWidth / contentWidth);
-    } else {
-      setScale(1);
+    if (isModalOpen) {
+      setModalWidth(containerModal.current.offsetWidth);
+      setModalHeight(containerModal.current.offsetHeight);
+      setContentModalWidth(contentModal.current.offsetWidth);
+      setContentModalHeight(contentModal.current?.offsetHeight);
     }
-  }, [containerHeight, contentHeight, containerWidth]);
+  }, [isModalOpen]);
+  // --- scale when size change ---
+  useEffect(() => {
+    const scaleByWidth = containerWidth / contentWidth;
+    const scaleByHeight = containerHeight / contentHeight;
+    if (scaleByHeight > scaleByWidth) {
+      console.log("Width ne");
+
+      console.log("containerHeight :", containerHeight);
+      console.log("containerWidth :", containerWidth);
+      console.log("contentHeight :", contentHeight);
+      console.log("contentWidth :", contentWidth);
+
+      setScale(scaleByWidth);
+    } else {
+      console.log("Height ne");
+      console.log("containerHeight :", containerHeight);
+      console.log("containerWidth :", containerWidth);
+      console.log("contentHeight :", contentHeight);
+      console.log("contentWidth :", contentWidth);
+      setScale(scaleByHeight);
+    }
+    if (isModalOpen) {
+      const scaleModalByWidth = modalWidth / contentModalWidth;
+      setScaleForModal(scaleModalByWidth);
+      if (modalHeight > contentModalHeight * scaleModalByWidth) {
+        setModalHeight(contentModalHeight * scaleModalByWidth);
+      }
+    }
+  }, [
+    containerHeight,
+    contentHeight,
+    containerWidth,
+    contentWidth,
+    modalWidth,
+    contentModalWidth,
+  ]);
+  // useEffect(() => {
+  //   if (contentHeight > containerHeight) {
+  //     if (containerWidth < containerWidth * (containerHeight / contentHeight)) {
+  //       setScale(containerWidth / contentWidth);
+  //     } else {
+  //       console.log("scale ne");
+
+  //       setScale(containerHeight / contentHeight);
+  //     }
+
+  //     //console.log(containerHeight / contentHeight);
+  //     //console.log(containerWidth / contentWidth);
+  //   } else {
+  //     setScale(1);
+  //   }
+  //   if (contentWidth > modalWidth) {
+  //     console.log("Scale cho modal ne: ", modalWidth / contentWidth);
+
+  //     setScaleForModal(modalWidth / contentWidth);
+  //   } else {
+  //     setScaleForModal(1);
+  //   }
+  // }, [containerHeight, contentHeight, containerWidth, modalWidth]);
+  useEffect(
+    () => {
+      if (contentHeight > containerHeight) {
+        const scaleHeight = containerHeight / contentHeight;
+        const scaleWidth = containerWidth / contentWidth;
+
+        if (containerWidth < containerWidth * scaleHeight) {
+          console.log("Scaling based on width");
+          setScale(scaleWidth);
+        } else {
+          console.log("Scaling based on height");
+          setScale(scaleHeight);
+        }
+      } else {
+        setScale(1);
+      }
+      // if (isModalOpen) {
+      //   setModalWidth(containerModal?.current.offsetWidth);
+      //   setContentModalWidth(contentModal?.current.offsetWidth);
+      //   setContentHeight(contentModal.current?.offsetHeight);
+      //   if (contentModalWidth > modalWidth) {
+      //     const modalScale = modalWidth / contentModalWidth;
+
+      //     console.log("Scale for modal: ", modalScale);
+
+      //     setScaleForModal(modalScale);
+      //     setModalHeight(contentHeight * modalScale);
+      //   } else {
+      //     console.log("Modal scale reset to 1");
+      //     setModalHeight(undefined);
+      //     setScaleForModal(1);
+      //   }
+      // }
+      //console.log(contentModalWidth);
+      // console.log(modalWidth);
+      // console.log("modal Height:", modalHeight);
+      // console.log("content Height :", contentHeight);
+    },
+    [
+      // containerHeight,
+      // contentHeight,
+      // containerWidth,
+      // contentWidth,
+      // modalWidth,
+      // contentModalWidth,
+    ]
+  );
 
   // --- React To Print ---
 
@@ -77,7 +216,7 @@ export default function PreviewTemplateLT({ template, ...props }) {
   });
 
   //  ---- Modal ---
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -89,19 +228,25 @@ export default function PreviewTemplateLT({ template, ...props }) {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isModalOpen]);
+  }, []);
+  const closeModal = () => {
+    onCloseModal();
+  };
+  const openModal = () => {
+    onOpenModal();
+  };
   return (
     <>
       {isModalOpen && (
         <div className="fixed inset-0 w-full max-h-full  bg-[#302c42] z-30 ">
-          <div className="modal max-w-[900px] w-full my-[50px]  bg-white h-[calc(100vh-120px)] mx-auto flex flex-col rounded-[16px]">
+          <div className="modal max-w-[900px] w-full md:my-[20px]  md:h-[calc(100vh-40px)] lg:my-[50px] xl:my-[60px] bg-white h-screen lg:h-[calc(100vh-100px)]  xl:h-[calc(100vh-120px)] mx-auto flex flex-col md:rounded-[8px] lg:rounded-[16px]">
             <div className="modal__header shrink-0 flex justify-between border-b-2 place-items-start   p-[20px]">
               <div className="header__name text-[32px] font-[600] jc-text-linear">
                 JustRs
               </div>
               <button
                 className="header__close-btn p-[12px] text-[#cccccc] hover:text-black"
-                onClick={() => setIsModalOpen(false)}
+                onClick={closeModal}
               >
                 <svg
                   width="24"
@@ -117,14 +262,26 @@ export default function PreviewTemplateLT({ template, ...props }) {
                 </svg>
               </button>
             </div>
-            <div className="modal__content flex-1 border overflow-auto">
-              <div className="w-full">
-                <Template />
+            <div className="modal__content flex-1 border overflow-y-scroll overflow-x-hidden">
+              <div
+                className="w-full"
+                ref={containerModal}
+                style={modalHeight ? { height: `${modalHeight}px` } : undefined}
+              >
+                <div
+                  className=""
+                  style={{
+                    transform: `scale(${scaleForModal})`,
+                    transformOrigin: "top left",
+                  }}
+                >
+                  <Template ref={contentModal} />
+                </div>
               </div>
             </div>
             <div className="modal__footer p-[20px] shrink-0 border-t-2 flex justify-end self-end pt-[20px] w-full">
               <button
-                onClick={() => setIsModalOpen(false)}
+                onClick={closeModal}
                 className="transition-all duration-100 ease-in-out px-[11px] py-[16px] text-[#888888] text-[15px] font-[600] mr-[8px] hover:bg-[#3899cf] hover:text-white rounded-lg"
               >
                 Cancel
@@ -186,7 +343,7 @@ export default function PreviewTemplateLT({ template, ...props }) {
           </div> */}
         </div>
       )}
-      <div className="hidden lg:block sticky top-0 right-0 w-full lg:col-span-5 h-full   z-0 overflow-hidden pt-[60px] pb-[80px]">
+      <div className="hidden lg:block sticky top-0 right-0 w-full lg:col-span-5 xl:col-span-6 h-full   z-0 overflow-hidden pt-[60px] pb-[80px]">
         <button
           onClick={handlePrint}
           className=" absolute bottom-[20px] right-1/2 translate-x-1/2 rounded px-[18px] py-[11px] bg-[#1f81b9] hover:bg-[#3899cf] transition-all duration-100 ease-in-out text-white text-[16px] font-[600]"
@@ -203,7 +360,7 @@ export default function PreviewTemplateLT({ template, ...props }) {
             className={`absolute opacity-0 hover:opacity-100   transition-all duration-100 ease-in-out top-0 left-1/2 -translate-x-1/2 h-full  flex justify-center items-center z-30`}
           >
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={openModal}
               className="px-[20px] py-[8px] font-[600] text-white rounded 
             transition-all duration-100 ease-in-out text-[16px]
             hover:text-[18px]
