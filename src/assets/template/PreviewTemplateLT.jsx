@@ -42,27 +42,28 @@ export default function PreviewTemplateLT({
       if (containerRef.current) {
         const newHeight = containerRef.current.offsetHeight;
         if (newHeight !== containerHeight) {
-          console.log("container Height change");
+          // console.log("container Height change");
 
           setContainerHeight(newHeight);
         }
         const newWidth = containerRef.current.offsetWidth;
         if (newWidth !== containerWidth) {
-          console.log("container Width change");
+          // console.log("container Width change");
 
           setContainerWidth(newWidth);
         }
       }
-      // if (containerModal.current) {
-      //   const newModalWidth = containerModal.current.offsetWidth;
-      //   //console.log(newModalWidth);
 
-      //   if (newModalWidth !== modalWidth) {
-      //     console.log("container Modal Width change");
+      if (containerModal.current) {
+        const newModalWidth = containerModal.current.offsetWidth;
+        //console.log(newModalWidth);
 
-      //     setModalWidth(newModalWidth);
-      //   }
-      // }
+        if (newModalWidth !== modalWidth) {
+          console.log("container Modal Width change");
+
+          setModalWidth(newModalWidth);
+        }
+      }
     };
     window.addEventListener("resize", handleResize);
     return () => {
@@ -87,10 +88,10 @@ export default function PreviewTemplateLT({
   // --- Watching when modal open ---
   useEffect(() => {
     if (isModalOpen) {
-      setModalWidth(containerModal.current.offsetWidth);
-      setModalHeight(containerModal.current.offsetHeight);
-      setContentModalWidth(contentModal.current.offsetWidth);
+      setContentModalWidth(contentModal.current?.offsetWidth);
       setContentModalHeight(contentModal.current?.offsetHeight);
+      setModalWidth(containerModal.current?.offsetWidth);
+      setModalHeight(containerModal.current?.offsetHeight);
     }
   }, [isModalOpen]);
   // --- scale when size change ---
@@ -98,28 +99,40 @@ export default function PreviewTemplateLT({
     const scaleByWidth = containerWidth / contentWidth;
     const scaleByHeight = containerHeight / contentHeight;
     if (scaleByHeight > scaleByWidth) {
-      console.log("Width ne");
+      // console.log("Width ne");
 
-      console.log("containerHeight :", containerHeight);
-      console.log("containerWidth :", containerWidth);
-      console.log("contentHeight :", contentHeight);
-      console.log("contentWidth :", contentWidth);
+      // console.log("containerHeight :", containerHeight);
+      // console.log("containerWidth :", containerWidth);
+      // console.log("contentHeight :", contentHeight);
+      // console.log("contentWidth :", contentWidth);
 
       setScale(scaleByWidth);
+      // setContainerHeight(scaleByWidth * contentHeight);
+      //setContainerHeight(contentHeight * scaleByWidth);
     } else {
-      console.log("Height ne");
-      console.log("containerHeight :", containerHeight);
-      console.log("containerWidth :", containerWidth);
-      console.log("contentHeight :", contentHeight);
-      console.log("contentWidth :", contentWidth);
+      // console.log("Height ne");
+      // console.log("containerHeight :", containerHeight);
+      // console.log("containerWidth :", containerWidth);
+      // console.log("contentHeight :", contentHeight);
+      // console.log("contentWidth :", contentWidth);
       setScale(scaleByHeight);
     }
-    if (isModalOpen) {
-      const scaleModalByWidth = modalWidth / contentModalWidth;
-      setScaleForModal(scaleModalByWidth);
-      if (modalHeight > contentModalHeight * scaleModalByWidth) {
-        setModalHeight(contentModalHeight * scaleModalByWidth);
-      }
+    // if (isModalOpen) {
+    //   const scaleModalByWidth = modalWidth / contentModalWidth;
+    //   setScaleForModal(scaleModalByWidth);
+    //   if (modalHeight > contentModalHeight * scaleModalByWidth) {
+    //     setModalHeight(contentModalHeight * scaleModalByWidth);
+    //   }
+    // }
+
+    const scaleModalByWidth = modalWidth / contentModalWidth;
+    setScaleForModal(scaleModalByWidth);
+    console.log("modalHeight:", modalHeight);
+    console.log("modalWidth :", modalWidth);
+    console.log("contentModalHeight :", contentModalHeight);
+    console.log("contentModalWidth :", contentModalWidth);
+    if (modalHeight > contentModalHeight * scaleModalByWidth) {
+      setModalHeight(contentModalHeight * scaleModalByWidth);
     }
   }, [
     containerHeight,
@@ -154,29 +167,27 @@ export default function PreviewTemplateLT({
   // }, [containerHeight, contentHeight, containerWidth, modalWidth]);
   useEffect(
     () => {
-      if (contentHeight > containerHeight) {
-        const scaleHeight = containerHeight / contentHeight;
-        const scaleWidth = containerWidth / contentWidth;
-
-        if (containerWidth < containerWidth * scaleHeight) {
-          console.log("Scaling based on width");
-          setScale(scaleWidth);
-        } else {
-          console.log("Scaling based on height");
-          setScale(scaleHeight);
-        }
-      } else {
-        setScale(1);
-      }
+      // if (contentHeight > containerHeight) {
+      //   const scaleHeight = containerHeight / contentHeight;
+      //   const scaleWidth = containerWidth / contentWidth;
+      //   if (containerWidth < containerWidth * scaleHeight) {
+      //     console.log("Scaling based on width");
+      //     setScale(scaleWidth);
+      //     setContainerHeight(scaleWidth * contentHeight);
+      //   } else {
+      //     console.log("Scaling based on height");
+      //     setScale(scaleHeight);
+      //   }
+      // } else {
+      //   setScale(1);
+      // }
       // if (isModalOpen) {
       //   setModalWidth(containerModal?.current.offsetWidth);
       //   setContentModalWidth(contentModal?.current.offsetWidth);
       //   setContentHeight(contentModal.current?.offsetHeight);
       //   if (contentModalWidth > modalWidth) {
       //     const modalScale = modalWidth / contentModalWidth;
-
       //     console.log("Scale for modal: ", modalScale);
-
       //     setScaleForModal(modalScale);
       //     setModalHeight(contentHeight * modalScale);
       //   } else {
@@ -238,7 +249,7 @@ export default function PreviewTemplateLT({
   return (
     <>
       {isModalOpen && (
-        <div className="fixed inset-0 w-full max-h-full  bg-[#302c42] z-30 ">
+        <div className="fixed inset-0 w-full max-h-full  bg-[#302c42] z-50 ">
           <div className="modal max-w-[900px] w-full md:my-[20px]  md:h-[calc(100vh-40px)] lg:my-[50px] xl:my-[60px] bg-white h-screen lg:h-[calc(100vh-100px)]  xl:h-[calc(100vh-120px)] mx-auto flex flex-col md:rounded-[8px] lg:rounded-[16px]">
             <div className="modal__header shrink-0 flex justify-between border-b-2 place-items-start   p-[20px]">
               <div className="header__name text-[32px] font-[600] jc-text-linear">
@@ -346,7 +357,10 @@ export default function PreviewTemplateLT({
       <div className="hidden lg:block sticky top-0 right-0 w-full lg:col-span-5 xl:col-span-6 h-full   z-0 overflow-hidden pt-[60px] pb-[80px]">
         <button
           onClick={handlePrint}
-          className=" absolute bottom-[20px] right-1/2 translate-x-1/2 rounded px-[18px] py-[11px] bg-[#1f81b9] hover:bg-[#3899cf] transition-all duration-100 ease-in-out text-white text-[16px] font-[600]"
+          style={{
+            top: `${scale * contentHeight + 70}px`,
+          }}
+          className={` absolute z-50  right-1/2 translate-x-1/2 rounded px-[18px] py-[11px] bg-[#1f81b9] hover:bg-[#3899cf] transition-all duration-100 ease-in-out text-white text-[16px] font-[600]`}
         >
           Print PDF
         </button>
@@ -356,7 +370,10 @@ export default function PreviewTemplateLT({
           className=" h-full  overflow-hidden relative mx-[20px]"
         >
           <div
-            style={{ width: `${816 * scale}px` }}
+            style={{
+              width: `${contentWidth * scale}px`,
+              height: `${scale * contentHeight}px`,
+            }}
             className={`absolute opacity-0 hover:opacity-100   transition-all duration-100 ease-in-out top-0 left-1/2 -translate-x-1/2 h-full  flex justify-center items-center z-30`}
           >
             <button

@@ -56,7 +56,7 @@ export default function InputTypeText({
         type="text"
         id={name}
         name={name}
-        className="bg-[#eff2f9] px-[16px] py-[12px] text-sm  font-sans rounded-[3px] focus:outline-none block w-full "
+        className="bg-[#eff2f9] px-[16px] py-[12px] text-[16px]  font-sans rounded-[3px] focus:outline-none block w-full "
         placeholder={placeholder}
         value={value}
         onChange={(e) => handleOnChange(e, reducer)}

@@ -10,8 +10,8 @@ function ExperienceInput({ name, value, label, onChange, index }) {
   const handleKeyDown = (e) => onChange(e, index, "keydown");
 
   return (
-    <div className="relative font-sans jc-form__section-input">
-      <label htmlFor={name} className="block mb-1 text-[16px] text-gray-700">
+    <div className="relative font-sans jc-form__section-input ">
+      <label htmlFor={name} className="block mb-1 text-[16px] text-[#8281a2]">
         {label}
       </label>
 
@@ -23,7 +23,7 @@ function ExperienceInput({ name, value, label, onChange, index }) {
           rows={Math.max(value?.length || 1, 1)}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          className="bg-[#eff2f9] px-[16px] py-[12px] text-sm rounded-[3px] h-auto focus:outline-[#8176af] w-full"
+          className="bg-[#eff2f9] px-[16px] py-[12px] text-[16px] rounded-[3px] h-auto focus:outline-[#8176af] w-full"
         />
       ) : (
         <input
@@ -32,7 +32,7 @@ function ExperienceInput({ name, value, label, onChange, index }) {
           name={name}
           value={value || ""}
           onChange={(e) => onChange(e, index)}
-          className="bg-[#eff2f9] px-[16px] py-[12px] text-sm rounded-[3px] focus:outline-none w-full"
+          className="bg-[#eff2f9] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none w-full"
         />
       )}
 
@@ -101,10 +101,10 @@ export default function FormItemExperience({ exp, index, ...props }) {
     >
       <div
         className={`epx-label ${
-          showInputField ? "mb-[15px]" : ""
+          showInputField ? "" : ""
         } relative h-[53px] border-b border-gray-300 pb-[10px]`}
       >
-        <div className="text-[16px] font-[600]">
+        <div className="text-[16px] font-[600] capitalize">
           {exp.position ? exp.position : "Your experience"}
         </div>
         <div className="text-[12px] flex capitalize jc-text-gray ">
@@ -113,12 +113,15 @@ export default function FormItemExperience({ exp, index, ...props }) {
 
           <span>{exp.endDate}</span>
         </div>
-        <div class="absolute flex items-baseline border-l-2 right-[0] pl-[20px] top-[20px] transform -translate-y-1/2">
+        <div
+          class="absolute  flex items-baseline border-l-2 sm:right-0 
+        right-[-20px] sm:pl-[20px] top-[20px] transform -translate-y-1/2"
+        >
           <button
             className="text-[#8281a2] hover:text-blue-500 flex items-baseline cursor-pointer px-[10px] py-[5px]"
             onClick={toggleInputField}
           >
-            <div>
+            <div className="hidden sm:block">
               <svg
                 width="20"
                 height="20"
@@ -168,24 +171,68 @@ export default function FormItemExperience({ exp, index, ...props }) {
         </div>
       </div>
 
+      {/* mt-[24px] mb-6 */}
       <div
-        className={`grid gap-x-[40px] gap-y-[24px] grid-cols-2 ${
+        className={`jc-form__section-input--wrapper  ${
           showInputField
-            ? "jc-animation-slide-down mb-6 "
-            : "jc-animation-slide-up"
+            ? "jc-animation-slide-down    "
+            : "jc-animation-slide-up "
         }  `}
       >
-        {fields.map(({ name, label }) => (
-          <div className="col-span-1" key={name}>
-            <ExperienceInput
-              name={name}
-              value={exp[name]}
-              label={label}
-              index={index}
-              onChange={handleChange}
-            />
-          </div>
-        ))}
+        {/* const fields = [
+    { name: "position", label: "Position" },
+    { name: "company", label: "Company" },
+    { name: "startDate", label: "Start Date" },
+    { name: "endDate", label: "End Date" },
+    { name: "location", label: "Location" },
+  ]; */}
+
+        <div className="col-span-2 mt-[16px]">
+          <ExperienceInput
+            name={"position"}
+            value={exp.position}
+            label={"Position"}
+            index={index}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-span-2 sm:col-span-1">
+          <ExperienceInput
+            name={"company"}
+            value={exp.company}
+            label={"Company"}
+            index={index}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-span-2 sm:col-span-1">
+          <ExperienceInput
+            name={"location"}
+            value={exp.location}
+            label={"Location"}
+            index={index}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="col-span-1">
+          <ExperienceInput
+            name={"startDate"}
+            value={exp.startDate}
+            label={"Start Date"}
+            index={index}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-span-1">
+          <ExperienceInput
+            name={"endDate"}
+            value={exp.endDate}
+            label={"End Date"}
+            index={index}
+            onChange={handleChange}
+          />
+        </div>
         <div className="col-span-2">
           <ExperienceInput
             name="description"

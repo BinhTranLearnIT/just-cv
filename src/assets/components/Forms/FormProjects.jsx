@@ -13,7 +13,7 @@ export default function FormProjects() {
     dispatch(updateProjects({ projects: newList }));
   };
   return (
-    <section className="jc-form__section w-full bg-white rounded px-[32px] py-[20px]">
+    <section className="jc-form__section ">
       <div className="text-[23px] font-[600] mb-[20px] text-black">Project</div>
 
       <div className="flex flex-col space-y-[8px]">

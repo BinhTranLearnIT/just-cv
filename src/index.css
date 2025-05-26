@@ -15,6 +15,12 @@
   .jc-btn {
     @apply px-[38px] py-[12px] rounded-[40px] font-bold jc-text-black hover:text-white ease-in;
   }
+  .jc-form__section {
+    @apply w-full bg-white rounded sm:px-[32px] sm:py-[20px] px-[20px] py-[12px];
+  }
+  .jc-form__section-input--wrapper {
+    @apply grid sm:gap-x-[40px] sm:gap-y-[24px] gap-x-[20px] gap-y-[24px]  grid-cols-2;
+  }
 }
 @layer utilities {
   .jc-text-black {

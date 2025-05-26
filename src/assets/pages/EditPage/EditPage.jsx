@@ -53,10 +53,17 @@ export default function EditPage() {
                 onClick={openModal}
               >{`Preview >`}</button>
             </div>
-            <div className="sm:grid sm:grid-cols-12 sm:gap-[4px] flex flex-nowrap">
-              <div className=" sm:col-span-1 relative mr-[4px] sm:mr-0 w-[45px] sm:w-full">
-                <div className="  bg-white rounded-r-[4px]   sticky top-[4px] w-full z-30 transition-all duration-100 ease-in-out ">
-                  <div className="flex flex-col overflow-hidden bg-white rounded-r-[4px]  transition-all duration-100 ease-in-out  hover:w-[200px] hover:border-r-2 hover:border-b-2 items-start py-[20px] w-[34px] ml-[10px] sm:ml-[15px] md:ml-[20px] lg:ml-[10px] xl:ml-[20px] space-y-[2px] over ">
+            {/* sm:grid sm:grid-cols-12 sm:gap-[4px] */}
+            <div className=" flex flex-nowrap relative">
+              {/* sm:col-span-1 */}
+              <div className=" hidden sm:block sticky top-0   w-fit z-40 ">
+                <div className="  bg-white rounded-r-[4px]   absolute top-0 w-full z-50 transition-all duration-100 ease-in-out ">
+                  <div
+                    className="flex flex-col overflow-hidden bg-white rounded-r-[4px]  transition-all duration-100 ease-in-out  
+                  w-[45px] hover:w-[200px] 
+                  hover:border-r-2 hover:border-b-2 items-start 
+                  py-[20px]  pl-[10px]  space-y-[2px]  "
+                  >
                     <button
                       onClick={() => scrollToView(PersonalRef)}
                       className="flex items-center  py-[12px]  jc-text-gray hover:jc-text-black bg-white transition-all duration-100 ease-in-out"
@@ -378,7 +385,8 @@ export default function EditPage() {
                   </div>
                 </div>
               </div>
-              <div className="sm:col-span-11  flex space-y-[4px] flex-col h-[calc(100vh-68px)] overflow-y-scroll">
+              {/* sm:col-span-11 */}
+              <div className=" sm:ml-[49px]  flex space-y-[4px] flex-col h-[calc(100vh-68px)] overflow-y-scroll relative z-0">
                 <div className="" ref={PersonalRef}>
                   <FormPersonalDetails />
                 </div>

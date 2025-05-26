@@ -24,8 +24,10 @@ export default function Header() {
   }, []);
   return (
     <header
-      className={`sticky top-0 w-full z-50 ${
-        scrolled ? "header--scrolled" : ""
+      className={`sticky top-0 w-full z-50 duration-200 ease-in-out transition-colors bg-transparent ${
+        scrolled
+          ? "backdrop-blur-[30px] bg-white shadow-[0px_0px_30px_rgba(227,228,237,0.37)] border-b-[2px] border-b-[rgba(227,255,255,0.16)]"
+          : "border-b-transparent"
       }   `}
     >
       <div
@@ -33,20 +35,29 @@ export default function Header() {
           shadow-[0_4px_10px_0_rgba(0,0,0,0.25)]
           rounded-bl-lg rounded-br-lg
        top-[-50px] left-0 absolute  w-full flex flex-col justify-end
-       transform  duration-500 ease-out ${
-         hasMounted ? "transition-all" : "transition-none invisible"
+       transform  duration-500 ease-out transition-all ${
+         hasMounted ? "" : "transition-none invisible"
        } ${isNavOpen ? "slide-down" : "slide-up pointer-events-none -z-10"} 
       `}
       >
-        <button className="jc-hover py-6 jc-text-black jc-text-sm font-semibold ">
+        <button
+          onClick={() => navigateLink("/")}
+          className="jc-hover py-6 jc-text-black jc-text-sm font-semibold "
+        >
           Home
         </button>
-        <Link to="/templates">
-          <button className=" jc-hover py-6 jc-text-black jc-text-sm font-semibold">
-            Templates
-          </button>
-        </Link>
-        <button className="jc-hover py-6 jc-text-black jc-text-sm font-semibold">
+
+        <button
+          onClick={() => navigateLink("/templates")}
+          className=" jc-hover py-6 jc-text-black jc-text-sm font-semibold"
+        >
+          Templates
+        </button>
+
+        <button
+          onClick={() => navigateLink("/")}
+          className="jc-hover py-6 jc-text-black jc-text-sm font-semibold"
+        >
           Language
         </button>
         <button className="mx-auto w-fit hover:text-white jc-text-black  jc-bg-linear font-bold jc-btn jc-text-sm">
@@ -54,11 +65,11 @@ export default function Header() {
         </button>
       </div>
 
-      <div className="jc-container flex     justify-between items-center">
+      <div className="jc-container flex  h-[72px]   justify-between items-center">
         <div
-          className={`header__logo py-2 ${
-            isNavOpen ? "jc-text-black" : "text-white"
-          } transition-colors duration-300 z-10 font-bold text-xl md:text-2xl lg:text-4xl`}
+          className={`header__logo py-2 duration-200 ease-in-out transition-colors
+        ${isNavOpen ? "jc-text-black" : "text-white"}
+          z-10 font-bold text-xl md:text-2xl lg:text-4xl`}
         >
           JustRS
         </div>

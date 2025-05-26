@@ -42,14 +42,14 @@ export default function FormPersonalDetails() {
   return (
     <section
       id="personal-details"
-      className="jc-form__section w-full bg-white rounded px-[32px] py-[20px]"
+      className="jc-form__section w-full bg-white rounded sm:px-[32px] sm:py-[20px] px-[20px] py-[12px]"
     >
       <div className="jc-form__section-title mb-[20px] text-[23px] jc-text-black font-[600]">
         Personal details
       </div>
-      <div className="jc-form__section-input--wrapper grid gap-x-[40px] gap-y-[24px] mb-6 grid-cols-2">
+      <div className="jc-form__section-input--wrapper grid sm:gap-x-[40px] sm:gap-y-[24px] gap-x-[20px] gap-y-[24px] mb-6 grid-cols-2">
         {/* ---input job title--- */}
-        <div className="col-span-1">
+        <div className="col-span-2 sm:col-span-1 order-2 sm:order-none">
           <InputTypeText
             label="Job Title"
             placeholder=""
@@ -59,7 +59,7 @@ export default function FormPersonalDetails() {
           />
         </div>
         {/* ---input avatar--- */}
-        <div className="col-span-1 jc-form__section-input relative flex align-bottom mt-[14px]">
+        <div className="sm:col-span-1 col-span-2 jc-form__section-input relative flex ml-[10px] sm:ml-0 order-1 sm:order-none align-bottom mt-[14px]">
           <picture className="mr-[16px]">
             <img
               src={
@@ -114,7 +114,7 @@ export default function FormPersonalDetails() {
           </div>
         </div>
 
-        <div className="col-span-1">
+        <div className="col-span-1 order-3 sm:order-none">
           <InputTypeText
             label="First Name"
             placeholder=""
@@ -123,7 +123,7 @@ export default function FormPersonalDetails() {
             reducer={updateName}
           />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-1 order-4 sm:order-none">
           <InputTypeText
             label="Last Name"
             placeholder=""
@@ -133,7 +133,7 @@ export default function FormPersonalDetails() {
           />
         </div>
 
-        <div className="col-span-1">
+        <div className="col-span-1 order-7 sm:order-none">
           <InputTypeText
             label="Email"
             placeholder=""
@@ -143,7 +143,7 @@ export default function FormPersonalDetails() {
           />
         </div>
 
-        <div className="col-span-1">
+        <div className="col-span-1 order-5 sm:order-none">
           <InputTypeText
             label="Phone"
             placeholder=""
@@ -153,7 +153,7 @@ export default function FormPersonalDetails() {
           />
         </div>
 
-        <div className="col-span-2">
+        <div className="col-span-2 order-9 sm:order-none">
           <InputTypeText
             label="Address"
             placeholder=""
@@ -163,7 +163,7 @@ export default function FormPersonalDetails() {
           />
         </div>
 
-        <div className="col-span-1">
+        <div className="col-span-1 order-8 sm:order-none">
           <InputTypeText
             label="Country"
             placeholder=""
@@ -172,7 +172,7 @@ export default function FormPersonalDetails() {
             reducer={updateContact}
           />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-1 order-6 sm:order-none">
           <InputTypeText
             label="Birthday"
             placeholder=""
@@ -181,7 +181,7 @@ export default function FormPersonalDetails() {
             reducer={updateContact}
           />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 order-10 sm:order-none">
           <InputTypeText
             label="Social"
             placeholder=""

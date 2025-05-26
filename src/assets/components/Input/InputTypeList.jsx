@@ -39,7 +39,7 @@ export default function InputTypeList({
       {Array.isArray(value) &&
         value.map(({ name, level }, _key) => (
           <div
-            className="relative jc-form__section-input  w-full px-[20px] py-[15px] border-gray-300  border "
+            className="relative jc-form__section-input  w-full sm:px-[20px] sm:py-[15px] px-[10px] py-[8px] border-gray-300  border "
             key={_key}
           >
             <input
@@ -49,7 +49,7 @@ export default function InputTypeList({
               placeholder="Type here"
               value={name ?? ""}
               onChange={(e) => updateItem(e, _key)}
-              className="text-[15px] w-[50%] font-[500]  capitalize placeholder:font-[400] placeholder:normal-case jc-form__section-input--item   focus:outline-none"
+              className="text-[16px] w-[60%] sm:w-[50%] font-[500]  capitalize placeholder:font-[400] placeholder:normal-case jc-form__section-input--item   focus:outline-none"
             />
 
             <div className="jc-form__section-input--decor h-[2px] z-10 absolute bottom-0 left-0 right-0 jc-bg-linear opacity-0 transform scale-50 transition-all duration-200 ease-in-out"></div>
@@ -101,7 +101,7 @@ export default function InputTypeList({
                 </select>
               </div>
             )}
-            <div className="absolute flex border-l-2 right-[12px] pl-[20px] top-1/2 transform -translate-y-1/2">
+            <div className="absolute flex border-l-2 right-0 sm:right-[12px] sm:pl-[20px] top-1/2 transform -translate-y-1/2">
               <button className=" flex  font-[400] text-[14px]  px-[10px] py-[5px]  text-[#8281a2] hover:text-blue-500 transition-colors duration-100">
                 <label htmlFor={`${stringToNormalizeAndDashify(name)}-${_key}`}>
                   <svg

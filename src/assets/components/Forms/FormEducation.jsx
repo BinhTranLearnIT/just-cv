@@ -14,7 +14,7 @@ export default function FormEducation() {
     dispatch(updateEducation({ education: newList }));
   };
   return (
-    <section className="jc-form__section w-full bg-white rounded px-[32px] py-[20px]">
+    <section className="jc-form__section">
       <div className="text-[23px] font-[600] mb-[20px] text-black">
         Education
       </div>

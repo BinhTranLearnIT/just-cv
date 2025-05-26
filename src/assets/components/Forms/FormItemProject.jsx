@@ -11,7 +11,7 @@ function ProjectInput({ name, value, label, onChange, index }) {
 
   return (
     <div className="relative font-sans jc-form__section-input">
-      <label htmlFor={name} className="block mb-1 text-[16px] text-gray-700">
+      <label htmlFor={name} className="block mb-1 text-[16px] text-[#8281a2]">
         {label}
       </label>
 
@@ -23,7 +23,7 @@ function ProjectInput({ name, value, label, onChange, index }) {
           rows={Math.max(value?.length || 1, 1)}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          className="bg-[#eff2f9] px-[16px] py-[12px] text-sm rounded-[3px] h-auto focus:outline-[#8176af] w-full"
+          className="bg-[#eff2f9] px-[16px] py-[12px] text-[16px] rounded-[3px] h-auto focus:outline-[#8176af] w-full"
         />
       ) : (
         <input
@@ -32,7 +32,7 @@ function ProjectInput({ name, value, label, onChange, index }) {
           name={name}
           value={value || ""}
           onChange={(e) => onChange(e, index)}
-          className="bg-[#eff2f9] px-[16px] py-[12px] text-sm rounded-[3px] focus:outline-none w-full"
+          className="bg-[#eff2f9] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none w-full"
         />
       )}
 
@@ -104,12 +104,16 @@ export default function FormItemProject({ pj, index, ...props }) {
         <div className="text-[14px] flex capitalize text-blue-500 ">
           <span>{pj.link}</span>
         </div>
-        <div class="absolute flex items-baseline border-l-2 right-[0] pl-[20px] top-[20px] transform -translate-y-1/2">
+
+        <div
+          class="absolute  flex items-baseline border-l-2 sm:right-0 
+        right-[-20px] sm:pl-[20px] top-[20px] transform -translate-y-1/2"
+        >
           <button
             className="text-[#8281a2] hover:text-blue-500 flex items-baseline cursor-pointer px-[10px] py-[5px]"
             onClick={toggleInputField}
           >
-            <div>
+            <div className="hidden sm:block">
               <svg
                 width="20"
                 height="20"
@@ -167,7 +171,7 @@ export default function FormItemProject({ pj, index, ...props }) {
         }  `}
       >
         {fields.map(({ name, label }) => (
-          <div className="col-span-1" key={name}>
+          <div className="col-span-2 sm:col-span-1" key={name}>
             <ProjectInput
               name={name}
               value={pj[name]}

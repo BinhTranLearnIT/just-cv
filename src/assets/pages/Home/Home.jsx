@@ -7,7 +7,7 @@ import JcSwiper from "../../components/Swiper/JcSwiper.jsx";
 export default function Home() {
   return (
     <div className="">
-      <div className=" w-full relative bg-[#302c42] pt-[25px] lg:pt-[50px]">
+      <div className=" w-full relative bg-[#302c42] pt-0 sm:pt-[25px] lg:pt-[50px]">
         <Header />
 
         <section className="hero  relative ">

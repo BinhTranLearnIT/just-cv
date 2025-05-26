@@ -15,7 +15,8 @@ export default function FormSkills() {
           when applying via an online system).
         </p>
       </div>
-      <div className="jc-form__section-input--wrapper grid gap-x-[40px] gap-y-[24px] mb-6 grid-cols-2">
+      {/* grid gap-x-[40px] gap-y-[24px] mb-6 grid-cols-2 */}
+      <div className="jc-form__section-input--wrapper ">
         <div className="col-span-2">
           <InputTypeList
             name="skills"
