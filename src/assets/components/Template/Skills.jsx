@@ -29,8 +29,8 @@ export default function Skills({
                     <div className="border-l-2 pl-[4px] ml-[8px] h-fit">
                       <span
                         className={`${
-                          skillClass
-                            ? skillClass
+                          levelClass
+                            ? levelClass
                             : "italic text-[14px] font-[400] text-[#3f3f3f]"
                         }`}
                       >

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/Header/Header";
 import Card from "../../components/Card/Card";
-import { Paris, Toronto } from "../../constants/constants";
+import { London, Paris, Toronto } from "../../constants/constants";
 
 export default function Templates() {
   return (
@@ -21,10 +21,10 @@ export default function Templates() {
             <Card name={Toronto} />
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-6  lg:col-span-4 xl:col-span-2 ">
-            <Card name={Toronto} />
+            <Card name={Paris} />
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-6  lg:col-span-4 xl:col-span-2 ">
-            <Card name={Toronto} />
+            <Card name={London} />
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-6  lg:col-span-4 xl:col-span-2 ">
             <Card name={Toronto} />

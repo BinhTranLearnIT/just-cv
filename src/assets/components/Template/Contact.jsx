@@ -31,9 +31,7 @@ export default function Contact({
           }  gap-[10px] ${contactItemClass} `}
         >
           <div
-            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass}${
-              !showIcon && "hidden"
-            }`}
+            className={`tp-contact__item-icon h-[22px] flex items-center ${contactItemIconClass} `}
           >
             <svg
               width="12"
@@ -51,7 +49,9 @@ export default function Contact({
               ></path>
             </svg>
           </div>
-          <div className={`tp-contact__item-name  ${contactItemNameClass}`}>
+          <div
+            className={`tp-contact__item-name  flex items-center ${contactItemNameClass}`}
+          >
             {data.email}
           </div>
         </div>
@@ -63,9 +63,7 @@ export default function Contact({
           } gap-[10px] ${contactItemClass}`}
         >
           <div
-            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass}${
-              !showIcon && "hidden"
-            }`}
+            className={`tp-contact__item-icon h-[22px] flex items-center  ${contactItemIconClass}`}
           >
             <svg
               width="10"
@@ -97,9 +95,7 @@ export default function Contact({
           } gap-[10px] ${contactItemClass} `}
         >
           <div
-            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass}${
-              !showIcon && "hidden"
-            }`}
+            className={`tp-contact__item-icon h-[22px]  flex items-center ${contactItemIconClass}`}
           >
             <svg
               width="8"
@@ -131,9 +127,7 @@ export default function Contact({
           } gap-[10px] ${contactItemClass}`}
         >
           <div
-            className={`tp-contact__item-icon h-[22px]  ${contactItemIconClass} ${
-              !showIcon && "hidden"
-            }`}
+            className={`tp-contact__item-icon h-[22px] flex items-center ${contactItemIconClass}`}
           >
             <svg
               width="12"
@@ -163,9 +157,7 @@ export default function Contact({
           } gap-[10px] ${contactItemClass}`}
         >
           <div
-            className={`tp-contact__item-icon h-[22px] ${contactItemIconClass} ${
-              !showIcon && "hidden"
-            }`}
+            className={`tp-contact__item-icon h-[22px] flex items-center ${contactItemIconClass}`}
           >
             <svg
               width="12"
@@ -195,9 +187,7 @@ export default function Contact({
           }  gap-[10px] ${contactItemClass}`}
         >
           <div
-            className={`tp-contact__item-icon h-[22px] ${contactItemIconClass}  ${
-              !showIcon && "hidden"
-            }`}
+            className={`tp-contact__item-icon h-[22px] flex items-center  ${contactItemIconClass}`}
           >
             <svg
               width="12"

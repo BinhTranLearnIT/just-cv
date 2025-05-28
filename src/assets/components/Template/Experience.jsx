@@ -1,4 +1,5 @@
 import React from "react";
+import capitalizeFirstLetter from "../../utils/string/capitalizeFirstLetter";
 
 export default function Experience({
   data,
@@ -69,15 +70,19 @@ export default function Experience({
               } `}
             >
               {Array.isArray(exp.description) &&
-                exp.description.map((des) => (
-                  <p className={`relative mt-[8px] ${descriptionClass}`}>
-                    {des}
+                exp.description.map((des) => {
+                  if (des.trim()) {
+                    return (
+                      <p className={`relative mt-[8px] ${descriptionClass}`}>
+                        {capitalizeFirstLetter(des)}
 
-                    <span class="text-black text-[16px] font-[500] absolute leading-none left-[-12px] top-[3px] ">
-                      -
-                    </span>
-                  </p>
-                ))}
+                        <span class="text-black text-[16px] font-[500] absolute leading-none left-[-12px] top-[3px] ">
+                          -
+                        </span>
+                      </p>
+                    );
+                  }
+                })}
             </div>
           </div>
         ))}

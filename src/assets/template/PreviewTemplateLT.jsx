@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Templates } from "./templateMap.jsx";
 import { useReactToPrint } from "react-to-print";
+import html2canvas from "html2canvas";
 export default function PreviewTemplateLT({
   template,
 
@@ -126,10 +127,14 @@ export default function PreviewTemplateLT({
     // }
 
     const scaleModalByWidth = modalWidth / contentModalWidth;
-    setScaleForModal(scaleModalByWidth);
+    if (modalWidth < contentModalWidth) {
+      setScaleForModal(scaleModalByWidth);
+    }
+
     console.log("modalHeight:", modalHeight);
-    console.log("modalWidth :", modalWidth);
     console.log("contentModalHeight :", contentModalHeight);
+    console.log("modalWidth :", modalWidth);
+
     console.log("contentModalWidth :", contentModalWidth);
     if (modalHeight > contentModalHeight * scaleModalByWidth) {
       setModalHeight(contentModalHeight * scaleModalByWidth);
@@ -165,51 +170,51 @@ export default function PreviewTemplateLT({
   //     setScaleForModal(1);
   //   }
   // }, [containerHeight, contentHeight, containerWidth, modalWidth]);
-  useEffect(
-    () => {
-      // if (contentHeight > containerHeight) {
-      //   const scaleHeight = containerHeight / contentHeight;
-      //   const scaleWidth = containerWidth / contentWidth;
-      //   if (containerWidth < containerWidth * scaleHeight) {
-      //     console.log("Scaling based on width");
-      //     setScale(scaleWidth);
-      //     setContainerHeight(scaleWidth * contentHeight);
-      //   } else {
-      //     console.log("Scaling based on height");
-      //     setScale(scaleHeight);
-      //   }
-      // } else {
-      //   setScale(1);
-      // }
-      // if (isModalOpen) {
-      //   setModalWidth(containerModal?.current.offsetWidth);
-      //   setContentModalWidth(contentModal?.current.offsetWidth);
-      //   setContentHeight(contentModal.current?.offsetHeight);
-      //   if (contentModalWidth > modalWidth) {
-      //     const modalScale = modalWidth / contentModalWidth;
-      //     console.log("Scale for modal: ", modalScale);
-      //     setScaleForModal(modalScale);
-      //     setModalHeight(contentHeight * modalScale);
-      //   } else {
-      //     console.log("Modal scale reset to 1");
-      //     setModalHeight(undefined);
-      //     setScaleForModal(1);
-      //   }
-      // }
-      //console.log(contentModalWidth);
-      // console.log(modalWidth);
-      // console.log("modal Height:", modalHeight);
-      // console.log("content Height :", contentHeight);
-    },
-    [
-      // containerHeight,
-      // contentHeight,
-      // containerWidth,
-      // contentWidth,
-      // modalWidth,
-      // contentModalWidth,
-    ]
-  );
+  // useEffect(
+  //   () => {
+  //     // if (contentHeight > containerHeight) {
+  //     //   const scaleHeight = containerHeight / contentHeight;
+  //     //   const scaleWidth = containerWidth / contentWidth;
+  //     //   if (containerWidth < containerWidth * scaleHeight) {
+  //     //     console.log("Scaling based on width");
+  //     //     setScale(scaleWidth);
+  //     //     setContainerHeight(scaleWidth * contentHeight);
+  //     //   } else {
+  //     //     console.log("Scaling based on height");
+  //     //     setScale(scaleHeight);
+  //     //   }
+  //     // } else {
+  //     //   setScale(1);
+  //     // }
+  //     // if (isModalOpen) {
+  //     //   setModalWidth(containerModal?.current.offsetWidth);
+  //     //   setContentModalWidth(contentModal?.current.offsetWidth);
+  //     //   setContentHeight(contentModal.current?.offsetHeight);
+  //     //   if (contentModalWidth > modalWidth) {
+  //     //     const modalScale = modalWidth / contentModalWidth;
+  //     //     console.log("Scale for modal: ", modalScale);
+  //     //     setScaleForModal(modalScale);
+  //     //     setModalHeight(contentHeight * modalScale);
+  //     //   } else {
+  //     //     console.log("Modal scale reset to 1");
+  //     //     setModalHeight(undefined);
+  //     //     setScaleForModal(1);
+  //     //   }
+  //     // }
+  //     //console.log(contentModalWidth);
+  //     // console.log(modalWidth);
+  //     // console.log("modal Height:", modalHeight);
+  //     // console.log("content Height :", contentHeight);
+  //   },
+  //   [
+  //     // containerHeight,
+  //     // contentHeight,
+  //     // containerWidth,
+  //     // contentWidth,
+  //     // modalWidth,
+  //     // contentModalWidth,
+  //   ]
+  // );
 
   // --- React To Print ---
 
@@ -225,6 +230,36 @@ export default function PreviewTemplateLT({
     contentRef: contentRef,
     onAfterPrint: () => console.log("Printed successfully!"), // Optional
   });
+
+  /// --- html2canvas for save pdf ---
+  const captureRef = useRef();
+  const handleCaptureClick = async () => {
+    if (!contentRef.current) return;
+
+    // Clone the element
+    const clone = contentRef.current.cloneNode(true);
+
+    // Get all styles and apply them inline
+    const computedStyle = window.getComputedStyle(contentRef.current);
+    for (const key of computedStyle) {
+      clone.style[key] = computedStyle.getPropertyValue(key);
+    }
+
+    // Temporarily add it to DOM for capture
+    document.body.appendChild(clone);
+
+    const canvas = await html2canvas(clone);
+
+    // Cleanup
+    document.body.removeChild(clone);
+
+    // Use the canvas result
+    const img = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = img;
+    link.download = "capture.png";
+    link.click();
+  };
 
   //  ---- Modal ---
 
@@ -273,9 +308,16 @@ export default function PreviewTemplateLT({
                 </svg>
               </button>
             </div>
+            <button
+              onClick={handlePrint}
+              className="sm:hidden m-[8px] transition-all duration-100 ease-in-out text-[15px] text-white
+                   bg-[#1f81b9] hover:bg-[#3899cf] py-[11px] px-[18px] rounded-lg font-[600]"
+            >
+              Print PDF
+            </button>
             <div className="modal__content flex-1 border overflow-y-scroll overflow-x-hidden">
               <div
-                className="w-full"
+                className="w-full flex justify-center bg-slate-600"
                 ref={containerModal}
                 style={modalHeight ? { height: `${modalHeight}px` } : undefined}
               >
@@ -283,7 +325,7 @@ export default function PreviewTemplateLT({
                   className=""
                   style={{
                     transform: `scale(${scaleForModal})`,
-                    transformOrigin: "top left",
+                    transformOrigin: "top ",
                   }}
                 >
                   <Template ref={contentModal} />
@@ -299,72 +341,45 @@ export default function PreviewTemplateLT({
               </button>
               <button
                 onClick={handlePrint}
-                className="transition-all duration-100 ease-in-out text-[15px] text-white bg-[#1f81b9] hover:bg-[#3899cf] py-[11px] px-[18px] rounded-lg font-[600]"
+                className="hidden sm:block m-[8px] transition-all duration-100 ease-in-out text-[15px] text-white
+                   bg-[#1f81b9] hover:bg-[#3899cf] py-[11px] px-[18px] rounded-lg font-[600]"
               >
                 Print PDF
               </button>
             </div>
           </div>
-          {/* <div className="print__btn w-full h-[60px]  text-center">
-            <button
-              onClick={handlePrint}
-              className=" absolute z-50 top-[20px] left-1/2 -translate-x-1/2 rounded px-[12px] py-[4px] bg-[#1a91f0] hover:bg-[#1170cd] transition-all duration-150 ease-in-out text-white text-[16px] font-[600]"
-            >
-              Print PDF
-            </button>
-          </div> */}
-
-          {/* <div className="modal__preview-screen w-fit mx-auto h-[calc(100vh-80px)] bg-red-400 overflow-y-scroll">
-            <div className="modal__close-btn bg-inherit text-end sticky top-0 z-30 ">
-              <div className="relative w-full  bg-black z">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-0 text-white  right-[20px] rounded px-[12px] py-[4px] bg-red-400 hover:bg-red-600 transition-all duration-150 ease-in-out text-white text-[16px] font-[600]"
-                >
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g id="Menu / Close_LG">
-                      <path
-                        id="Vector"
-                        d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001"
-                        stroke="#000000"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </g>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div className="w-fit mx-auto z-0">
-              <Template />
-            </div>
-          </div> */}
-          {/* <div className="print__preview w-full overflow-scroll ">
-            <div className="w-[816px] h-[2000px] bg-blue-500 mx-auto">
-              <div className="button sticky top-0">Close</div>
-              <div className="w-[816px] h-[2000px]"></div>
-            </div>
-          </div> */}
         </div>
       )}
       <div className="hidden lg:block sticky top-0 right-0 w-full lg:col-span-5 xl:col-span-6 h-full   z-0 overflow-hidden pt-[60px] pb-[80px]">
-        <button
-          onClick={handlePrint}
+        <div
+          className="absolute z-50  right-1/2 translate-x-1/2"
+          style={{
+            top: `${scale * contentHeight + 70}px`,
+          }}
+        >
+          <button
+            onClick={handlePrint}
+            className={`  rounded px-[18px] py-[11px] bg-[#1f81b9] hover:bg-[#3899cf] transition-all duration-100 ease-in-out text-white text-[16px] font-[600]`}
+          >
+            Print PDF
+          </button>
+          {/* <button
+            onClick={handleCaptureClick}
+            className={` rounded px-[18px] py-[11px] bg-[#1f81b9] hover:bg-[#3899cf] transition-all duration-100 ease-in-out text-white text-[16px] font-[600]`}
+          >
+            Save PDF
+          </button> */}
+        </div>
+
+        {/* <button
+          onClick={handleCaptureClick}
           style={{
             top: `${scale * contentHeight + 70}px`,
           }}
           className={` absolute z-50  right-1/2 translate-x-1/2 rounded px-[18px] py-[11px] bg-[#1f81b9] hover:bg-[#3899cf] transition-all duration-100 ease-in-out text-white text-[16px] font-[600]`}
         >
-          Print PDF
-        </button>
-
+          Save PDF
+        </button> */}
         <div
           ref={containerRef}
           className=" h-full  overflow-hidden relative mx-[20px]"

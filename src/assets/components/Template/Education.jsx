@@ -1,4 +1,5 @@
 import React from "react";
+import capitalizeFirstLetter from "../../utils/string/capitalizeFirstLetter";
 
 export default function Education({
   data,
@@ -46,7 +47,7 @@ export default function Education({
             {Array.isArray(edu.description) &&
               edu.description.map((des) => (
                 <p className={`relative mt-[8px] ${descriptionClass}`}>
-                  {des}
+                  {capitalizeFirstLetter(des)}
 
                   <span class="text-black text-[16px] font-[500] absolute leading-none left-[-12px] top-[3px] ">
                     -
